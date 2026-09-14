@@ -1,4 +1,5 @@
 # Decision Record: Multi-Platform Quality Gates (GitHub / GitLab / Gitea)
+> status: Active（生效）
 
 - Date: 2026-09-15
 - Status: Accepted
