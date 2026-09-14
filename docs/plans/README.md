@@ -4,6 +4,7 @@
 路线图**总览**目前位于[实施篇第四部分](../solution/vibe-coding-harness-plan.zh.md)（保持稳定，不承载进度）。Phase 0 启动后，在本目录建立活文档：
 
 - `deferred-blueprints.md`：**终极方案目录（已建立）**——所有"现在不做、以后可能做"的方案登记于此，每月扫一次
+- `agile-gap-analysis.md`：**敏捷体系缺口分析（已建立）**——流动层缺口 G1-G11 与执行顺序
 - `roadmap.md`：阶段里程碑与勾选状态（随进度更新）
 - `progress.md`：周记——本周做了什么 / Agent 挣扎点 / 回灌了什么
 
