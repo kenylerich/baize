@@ -1,37 +1,37 @@
-# 决策记录：基础设施边界（本地 git / 远端 / 门禁 / 沙箱 / 容灾）
-> status: Active（生效）
+# Decision Record: Infrastructure Boundaries (local git / remote / gates / sandbox / DR)
+> status: Active — authoritative English version. Chinese translation: [20260914-infra-boundary-decisions.zh.md](./20260914-infra-boundary-decisions.zh.md)
 
-- 日期：2026-09-14
-- 状态：已接受
-- 背景：团队处于 Phase 0-1（单人 + AI Agent 试点，文档仓库 baize）。本轮讨论明确了本地 git 的能力边界，以及四个"本地做不了"场景的处置方式。关联：`docs/plans/deferred-blueprints.md`（终极方案目录）。
+- Date: 2026-09-14
+- Status: Accepted
+- Background: the team is in Phase 0-1 (single person + AI agent pilot; docs repo baize). This discussion clarified the capability boundaries of local git and how to handle the four scenarios where local git falls short. Related: the deferred-blueprints register.
 
-## D1 当前状态管理采用本地 git
+## D1 Local git for state management at the current stage
 
-- **决定**：单人阶段全部状态管理（进度持久化、会话恢复、回滚、worktree 隔离）用本地 git，不引入额外设施。
-- **理由**：方案中 git 承担的角色（历史记录、进度锚点、回滚点）全部是本地能力；已实测 worktree 创建与历史读取无需网络。
-- **变更条件**：出现第二个提交主体（第二台机器 / 第二个人），见 B1。
+- **Decision**: in the solo stage, all state management (progress persistence, session recovery, rollback, worktree isolation) uses local git, with no additional infrastructure.
+- **Rationale**: every role git plays in the plan (history, progress anchors, rollback points) is a local capability; worktree creation and history reading verified to work without network.
+- **Change condition**: a second committing subject appears (second machine / second person), see B1.
 
-## D2 跨机器 / 多人同步必须使用远端
+## D2 Cross-machine / multi-person sync requires a remote
 
-- **决定**：需要跨主体同步时使用远端仓库；权威远端一经使用即同时承担备份职责。
-- **理由**：git 历史只存在于做提交那台机器的磁盘上，跨主体共享必须经过公共汇合点（"公共信箱"），这是物理限制而非功能缺失。
+- **Decision**: use a remote repository whenever cross-subject sync is needed; an authoritative remote simultaneously serves as backup.
+- **Rationale**: git history exists only on the disk of the machine that made the commits; sharing across subjects must pass through a common mailbox ("public postbox") — a physical constraint, not a missing feature.
 
-## D3 评审门禁选型 Docker 自建 Gitea（推迟启用）
+## D3 Review gates: self-hosted Docker Gitea (deferred until triggered)
 
-- **决定**：门禁方案选定为 Gitea（Docker 自建）+ act_runner CI；触发条件出现前不部署。
-- **理由**：内网私有、零许可成本、资源占用小（数百 MB 内存）；原生支持分支保护 / PR / 必须 N 个 Approve / 状态检查，完整覆盖 L2 门禁设计。备选并否决：GitHub 原生门禁（可接受云端时更省事）、GitLab（过重）。
-- **部署包**：`infra/gitea/`
-- **触发条件**：B1——出现第二个提交主体。
-- **2026-09-15 补充**：质量闸门已升级为跨平台不变量契约（GitHub / GitLab / Gitea 一致），见 D10（`20260915-multi-platform-quality-gates.md`）与 `docs/solution/quality-gates.md`。Gitea 仍为自建默认，但不再是唯一选项。
+- **Decision**: the gate stack is Gitea (Docker self-hosted) + act_runner CI; do not deploy until the trigger condition occurs.
+- **Rationale**: intranet-private, zero license cost, lightweight (a few hundred MB of RAM); natively supports branch protection / PR / N required approvals / status checks, fully covering the L2 gate design. Rejected alternatives: GitHub native gates (simpler if cloud is acceptable), GitLab (too heavy).
+- **Deployment package**: `infra/gitea/`
+- **Trigger**: B1 — a second committing subject appears.
+- **Addendum 2026-09-15**: gates upgraded to a cross-platform invariant contract (GitHub / GitLab / Gitea consistent), see D10 (`20260915-multi-platform-quality-gates.md`) and `docs/solution/quality-gates.md`. Gitea remains the self-host default but is no longer the only option.
 
-## D4 Agent 沙箱与凭据代理推送按需启用
+## D4 Agent sandbox & credential-proxy push: enable on demand
 
-- **决定**：本地阶段 Agent 直接在本机仓库 commit，不引入沙箱/代理；任何让 Agent 接触远端的场景，一律使用细粒度最小权限 token（单仓库、仅写权限），不交付主账号凭据。
-- **理由**："沙箱推送"是"Agent 被隔离"+"权威仓库在隔离边界外"两个条件同时成立时的伴生需求；本地阶段该需求不存在。
-- **触发条件**：B3——Agent 进入隔离容器或需要并行多 Agent。
+- **Decision**: in the local stage the agent commits directly to the on-machine repo — no sandbox/proxy; any scenario where the agent touches a remote uses a fine-grained least-privilege token (single repo, write-only), never the primary account credential.
+- **Rationale**: "sandbox push" is a derivative need of "agent isolated + authoritative repo outside the boundary"; in the local stage that need doesn't exist.
+- **Trigger**: B3 — the agent moves into an isolated container, or multiple parallel agents are needed.
 
-## D5 容灾由远端承担，不单独建设
+## D5 DR is covered by the remote; no separate build-out
 
-- **决定**：不建设独立备份系统；备份窗口 = push 频率，把 `git push` 挂进单特性循环的收尾动作（每特性 / 每日一次）。
-- **理由**：GitHub 远端（baize）已是完整异地拷贝；当前所有内容都在 git 内。唯一不在 git 内的状态（Gitea 数据卷：审批记录、issue、账号）当前不存在。
-- **变更条件**：B1 启用后，`gitea-data` 卷纳入备份（B4）。
+- **Decision**: no standalone backup system; the backup window = push frequency — `git push` is attached to the closing step of the single-feature loop (per feature / daily).
+- **Rationale**: the GitHub remote (baize) is already a full off-site copy; all current content lives inside git. The only state outside git (the Gitea data volume: review records, issues, accounts) doesn't exist yet.
+- **Change condition**: once B1 is enabled, the `gitea-data` volume enters backup scope (B4).

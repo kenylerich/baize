@@ -1,25 +1,25 @@
-# 终极方案目录（Deferred Blueprints）
-> status: Active（生效）
+# Deferred Blueprints Register
+> status: Active — authoritative English version. Chinese translation: [deferred-blueprints.zh.md](./deferred-blueprints.zh.md)
+>
+> Everything "not now, maybe later" is registered here. **Scanned monthly**: when a trigger signal fires, follow "where to look" and flip the status to "enabled".
+> Status values: not enabled / enabled / deprecated (with pointer).
 
-> 所有"现在不做、以后可能做"的方案统一登记在这张表。**每月扫一次**：信号到了就按"去哪看"启动，状态改为"已启用"。
-> 状态取值：未启用 / 已启用 / 已废弃（注明去向）。
-> 本表只登记"方案已想清楚、按触发条件推迟"的事项；新讨论出的"以后再说"，当场加一行。
-
-| # | 方案 | 触发信号（出现这个才做） | 去哪看 | 状态 |
+| # | Blueprint | Trigger signal (do it only when this appears) | Where to look | Status |
 |---|---|---|---|---|
-| B1 | Docker Gitea 评审门禁（分支保护 + PR + CI + Approve）——**三平台中的优先项** | 出现第二个提交主体：来了第二个同事，或 Agent 提交量大到人肉把关不过来 | `infra/gitea/`（部署包 + 启用四步）；决策记录 D3/D10；跨平台闸门契约 `docs/solution/quality-gates.md`；本仓库已内置三平台 CI 配置（.gitea/.github/.gitlab-ci.yml） | 部署并合入：Gitea 运行于 localhost:3000，仓库 kenyle/baize 已建立并同步（main + 归档标签）；待启用分支保护门禁与 push mirror（需 GitHub 细粒度 PAT） |
-| B2 | Gitea push mirror 同步 GitHub（异地备份镜像） | B1 启用后，Gitea 成为权威仓库时 | `infra/gitea/README.md` 第 5 节 | 未启用 |
-| B3 | Agent 沙箱 + 凭据代理推送 | Agent 跑进隔离容器，或需要并行多个互不干扰的 Agent | 决策记录 D4；实施篇 2.2⑤ 安全层 | 未启用 |
-| B4 | 容灾单独建设（Gitea 数据卷备份） | B1 启用后（审批记录、issue 等 git 之外的数据出现） | `infra/gitea/README.md` 第 6 节；决策记录 D5 | 未启用 |
-| B5 | 嵌入式 HIL 设备农场（真机 + 继电器复位 + 设备锁） | 嵌入式 L1 主机单测 + L2 仿真跑通，且需要真机发布门禁 | 实施篇 3.4、Phase 3 | 未启用 |
-| B6 | Evaluator 质量评分 + GC Agent（熵治理自动化） | 人肉清理 AI slop 的时间明显超过产出收益 | 实施篇 4.6、Phase 3 | 未启用 |
-| B7 | 领域适配卡逐个建设（桌面/移动/游戏/嵌入式…） | 业务线开始接入对应领域 | 实施篇第三部分；`docs/adapters/` 建卡流程 | 未启用（随 Phase 2 逐个转"已启用"） |
-| B8 | 防篡改加强：GPG 签名提交（SHA256 指纹清单已落地） | 需要向仓库之外证明文档完整性与作者身份（对外交付、合规审计） | 决策记录 20260915 D8；`scripts/doc-fingerprint.mjs` | 部分启用（清单已落地；GPG 未启用） |
-| B9 | 全量文档双语化（模板/决策/适配卡的英文版） | 出现需要英文阅读的协作者或对外发布需求 | 决策记录 20260915 D9；双语规则见根目录 AGENTS.md | 未启用 |
-| B10 | 脚本语言统一迁移 mjs/Node | 团队确认 JS 主栈，且所有相关机器（含各领域 CI 容器）都有 Node；在此之前**脚本语言跟随各仓库技术栈**，只统一入口名（build/run/verify/observe/smoke） | 本机 Node v24 已确认；对话结论 2026-09-15 | 未启用（bash + Git Bash 已覆盖当前场景） |
+| B1 | Docker Gitea review gates (branch protection + PR + CI + Approve) — **priority of the three platforms** | A second committing subject appears: a second colleague, or agent commit volume exceeds human gating capacity | `infra/gitea/`; decisions D3/D10; `docs/solution/quality-gates.md`; this repo ships all three platform CI configs (.gitea/.github/.gitlab-ci.yml) | Deployed & merged: Gitea runs at localhost:3000, repo kenyle/baize created and synced (main + archive tag); branch protection and push mirror pending |
+| B2 | Gitea push mirror to GitHub (off-site backup) | After B1, when Gitea becomes the authoritative repo | `infra/gitea/README.md` section 5 (needs a GitHub fine-grained PAT) | Not enabled |
+| B3 | Agent sandbox + credential-proxy push | Agents run inside isolated containers, or multiple non-interfering agents are needed | Decision D4; Implementation Guide 2.2⑤ | Not enabled |
+| B4 | Standalone DR build-out (Gitea data-volume backup) | After B1 (git-external state appears: review records, issues) | `infra/gitea/README.md` section 6; decision D5 | Not enabled |
+| B5 | Embedded HIL device farm (real boards + relay reset + device locks) | Embedded L1 + L2 passing and a real-hardware release gate is needed | Implementation Guide 3.4, Phase 3 | Not enabled |
+| B6 | Evaluator quality scoring + GC agents (entropy governance automation) | Human AI-slop cleanup time clearly exceeds its value | Implementation Guide 4.6, Phase 3 | **Not enabled — note: the Planner/Generator/Evaluator loop is NOT running anywhere in the system today** |
+| B7 | Domain adapter cards (desktop/mobile/game/embedded…) | A business line onboards its domain | Implementation Guide Part 3; `docs/adapters/` | Not enabled (flips to enabled per domain in Phase 2) |
+| B8 | Tamper-resistance enhancement: GPG-signed commits (SHA256 manifest already landed) | Document integrity & authorship must be provable outside the repo (external delivery, compliance) | Decision 20260915 D8; `scripts/doc-fingerprint.mjs` | Partially enabled (manifest live; GPG not) |
+| B9 | Full bilingualization of all docs | Done — landed directly per team decision | Decision 20260915 D9; bilingual rules in root AGENTS.md | Enabled (all docs under docs/ paired, see translation-status) |
+| B10 | Unify script language to mjs/Node | Team confirms JS as the primary stack AND all relevant machines (including per-domain CI containers) have Node; until then **each repo's scripts follow its own stack**, only the entry names are unified (build/run/verify/observe/smoke) | Local Node v24 confirmed; conversation conclusion 2026-09-15 | Not enabled (bash + Git Bash covers the current scenario) |
 
-## 扫表记录
+## Scan log
 
-| 日期 | 结论 |
+| Date | Conclusion |
 |---|---|
-| 2026-09-14 | 建表。全部未启用，无到期信号。 |
+| 2026-09-14 | Register created. All not enabled. |
+| 2026-09-15 | B8 partially enabled; B9 enabled; B1 deployed & merged. |

@@ -1,45 +1,44 @@
-# 敏捷开发体系缺口分析（Agile Gap Analysis）
-
-> status: Active（生效；内部活文档，随迭代更新）
+# Agile Gap Analysis
+> status: Active — authoritative English version. Chinese translation: [agile-gap-analysis.zh.md](./agile-gap-analysis.zh.md)
 >
-> 日期：2026-09-15。依据：本轮讨论 + 实施篇（solution/）+ 六篇调研（research/）。
-> 目标：把 baize 仓库从"知识与质量治理层"扩展为完整敏捷开发系统——**需求 → 迭代 → 任务 → 增量 → 反馈**的闭环。
+> Date: 2026-09-15. Basis: this discussion + Implementation Guide (solution/) + the six research sources.
+> Goal: extend the baize repo from a "knowledge & quality governance layer" into a full agile development system — the **requirements → iteration → tasks → increments → feedback** loop.
 
-## 缺口总表
+## Gap table
 
-| # | 缺口 | 现状 | 改造动作 | 优先级 |
+| # | Gap | Current state | Action | Priority |
 |---|---|---|---|---|
-| G1 | 需求池与录入规范 | 无活的需求池 | GitHub Issues 为唯一入口；issue 模板固定字段：背景 / 用户故事 / **验收标准=可执行命令** / 优先级；录入检查（独立、小、有价值；验收写不成命令=退回重写） | P0 |
-| G2 | 迭代节奏 | roadmap 只有占位说明 | 双周一个 sprint；`roadmap.md` 记里程碑；`sprints/SXX.md` 记每期目标/范围/结果 | P0 |
-| G3 | 完成定义（DoD） | verify 是技术判定，DoD 未成文 | DoD 写入 AGENTS.md：实现 + verify 通过 + 评审通过 + 文档同步 + 清单勾选 + progress 更新 | P0 |
-| G4 | 回顾机制 | 回灌/扫表机制有，节奏无 | 每 sprint 末回顾会；改进项按"讨论入库机制"当场落盘 | P0 |
-| G5 | 代码评审与集成门禁 | docs-check CI 在跑；分支保护未开 | 直接启用 GitHub 分支保护 main（禁直接 push、必须 PR、CI 必须绿）——零成本；Gitea 仍按 B1 触发条件出现再上 | P0 |
-| G6 | 需求澄清流程 | Agent"先问后做"在 SOP 有，需求侧无承接 | issue 内设"澄清问答"区；问答沉淀为验收标准的依据 | P1 |
-| G7 | 技术预研（spike）流程 | 无 | 不确定的技术点做时间盒预研（≤2 天）→ 产出 = 可运行 demo + 一条 ADR 入 decisions/；预研失败也是产出（否决一个选型） | P1 |
-| G8 | 需求追溯与变更控制 | 无 | 全链路追溯：issue ↔ feature-list 条目 ↔ 分支/commit（`Closes #N`）↔ PR ↔ verify；PR 模板强制逐条对照验收标准自检；改需求=改 issue 并写明理由；sprint 中途不加新需求（bug 除外）；Agent 禁止"顺手多做" | P1 |
-| G9 | 分支策略与提交规范 | 未成文 | trunk-based 短分支 + PR；conventional commits（支持 CHANGELOG 自动生成） | P1 |
-| G10 | 交付与发布 | 无版本/CHANGELOG 概念 | 每 sprint 末打发布 tag + CHANGELOG.md（从提交生成）；与月度归档标签共用节奏 | P2 |
-| G11 | 度量 | 无 | 吞吐（每 sprint 完成故事数）、周期（issue 开→关天数）；先用 GitHub insights，不自建 | P2 |
+| G1 | Requirements pool & intake rules | No live requirements pool | GitHub Issues as the single entry; issue template with fixed fields: background / user story / **acceptance criteria = executable commands** / priority; intake check (independent, small, valuable; acceptance that can't be written as a command = sent back) | P0 |
+| G2 | Iteration cadence | roadmap is a placeholder only | Biweekly sprints; `roadmap.md` for milestones; `sprints/SXX.md` for goal/scope/result | P0 |
+| G3 | Definition of Done (DoD) | verify is the technical judgment; DoD not written down | DoD into AGENTS.md: implementation + verify passed + review passed + docs synced + checklist ticked + progress updated | P0 |
+| G4 | Retrospective mechanism | feedback/scan mechanisms exist, no cadence | Retrospective at each sprint end; improvement items land immediately via the capture-discussions mechanism | P0 |
+| G5 | Code review & integration gates | docs-check CI running; branch protection off | Enable GitHub branch protection on main directly (no direct push, PR required, CI green) — zero cost; Gitea still per B1 trigger | P0 |
+| G6 | Requirements clarification flow | "ask before coding" exists in the SOP, no requirements-side anchor | "Clarification Q&A" section inside issues; agent asks first | P1 |
+| G7 | Tech spike process | none | Time-boxed spikes (≤2 days) for uncertain tech → runnable demo + one ADR into decisions/; a failed spike is also an outcome | P1 |
+| G8 | Requirements traceability & change control | none | Full-chain traceability: issue ↔ feature-list ↔ branch/commit (`Closes #N`) ↔ PR ↔ verify; PR template forces line-by-line self-check against acceptance criteria; requirement changes = edit the issue with reasons; no new requirements mid-sprint (bugs excepted); the agent must not "do extra on the side" | P1 |
+| G9 | Branch strategy & commit conventions | not written down | trunk-based short-lived branches + PR; conventional commits (enables CHANGELOG generation) | P1 |
+| G10 | Delivery & release | no version/CHANGELOG concept | Release tag per sprint + CHANGELOG.md (generated from commits); shares the cadence with monthly archive tags | P2 |
+| G11 | Metrics | none | Throughput (stories per sprint), cycle time (issue open→close); use GitHub insights first, no custom build | P2 |
 
-## 技术储备视图（支撑缺口的三层储备）
+## Technical-reserve view (three layers supporting the gaps)
 
-- **平台层**（一次建好、全体复用，Phase 1 落地）：repo 模板、五脚本、镜像矩阵、CI 模板——实施篇已备；
-- **领域层**（每个领域一张）：领域适配卡——B7 已登记；
-- **项目层**（每个项目开工前）：选型 spike → ADR——即 G7。
+- **Platform layer** (built once, reused by all, Phase 1): repo template, five scripts, image matrix, CI templates — ready in the Implementation Guide;
+- **Domain layer** (one per domain): domain adapter cards — registered as B7;
+- **Project layer** (before each project starts): selection spike → ADR — that is G7.
 
-## 调研结论
+## Research conclusion
 
-录入 / 储备 / 防偏 / 工程化四个维度均为成熟工程实践，六篇调研已覆盖大半（验收标准=可执行命令、一次一个特性、计划工件、传感器与门禁），**无需新的大规模外部调研**。先落地 P0/P1；Phase 0 结束后可做一次外部校准。
+Intake / reserves / drift-prevention / engineering management are all mature engineering practices; the six research sources already cover most of them (acceptance = executable commands, one feature at a time, plans as artifacts, sensors & gates). **No new large-scale external research is needed.** Land P0/P1 first; an external calibration can follow at the end of Phase 0.
 
-## 执行顺序
+## Execution order
 
-- 第 1 天：G1 issue 模板 + G3 DoD 成文；
-- 第 2 天：G2 roadmap.md + 首个 sprint 计划；
-- 第 3–10 天：首个 sprint（选 T1 试点项目，G8/G9 随项目启用）；
-- sprint 末：G4 首次回顾会 + G10 首个发布 tag。
+- Day 1: G1 issue templates + G3 DoD written down;
+- Day 2: G2 roadmap.md + first sprint plan;
+- Days 3–10: first sprint (pick a T1 pilot; G8/G9 enabled with the project);
+- Sprint end: G4 first retrospective + G10 first release tag.
 
-## 扫描记录
+## Scan log
 
-| 日期 | 结论 |
+| Date | Conclusion |
 |---|---|
-| 2026-09-15 | 建档。G1-G5 为 P0，G6-G9 为 P1，G10-G11 为 P2。 |
+| 2026-09-15 | Created. G1–G5 = P0, G6–G9 = P1, G10–G11 = P2. |

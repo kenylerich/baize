@@ -9,7 +9,7 @@
 - 文档地图：docs/README.md（中文翻译：docs/README.zh.md）
 - 调研篇（设计依据与出处）：docs/research/harness-best-practices.md（中文翻译：同目录 .zh.md）
 - 实施篇（完整方案与路线图）：docs/solution/vibe-coding-harness-plan.md（中文翻译：同目录 .zh.md）
-- **终极方案目录（现在不做、以后可能做）：docs/plans/deferred-blueprints.md**
+- **终极方案目录（现在不做、以后可能做）：docs/plans/deferred-blueprints.zh.md**
 - 可复制模板：docs/templates/ ｜ 领域适配卡：docs/adapters/ ｜ 决策记录：docs/decisions/
 
 ## Working Rules（讨论入库机制）
@@ -17,14 +17,14 @@
 1. **当场存**：任何讨论一旦产生结论（决定 / 方案 / 边界 / 教训），立即写入仓库对应位置——不等提醒，不留到"以后"。
 2. **一个知识一个家**（路由表）：
    - 决定与理由 → `docs/decisions/YYYYMMDD-标题.md`
-   - 未启用、以后可能做的方案 → `docs/plans/deferred-blueprints.md` 登记一行（必须含触发信号）
+   - 未启用、以后可能做的方案 → `docs/plans/deferred-blueprints.zh.md` 登记一行（必须含触发信号）
    - 已启用方案的实施细节 → `docs/solution/` 或 `infra/<名称>/`
    - 某领域怎么接入 → `docs/adapters/`（按模板建卡）
    - 可复制的模板 → `docs/templates/`（唯一权威来源）
    - 进度与计划 → `docs/plans/`
 3. **结论三件套**：写任何结论必须带齐——①什么时候才需要它（触发信号，大白话）②具体怎么做（步骤/文件）③当初为什么这么定（理由与被否掉的备选）。
 4. **收尾自查**：每次会话结束前问一句——"本次讨论的结论都进仓库了吗？"没进的，当场补完再结束。
-5. **每月一扫**：打开 deferred-blueprints.md 逐行检查——触发信号到了吗？到了就按"去哪看"启动，状态改为"已启用"；顺带抽查文档链接是否有效。
+5. **每月一扫**：打开 deferred-blueprints.zh.md 逐行检查——触发信号到了吗？到了就按"去哪看"启动，状态改为"已启用"；顺带抽查文档链接是否有效。
 
 ## Document Lifecycle（文档生命周期）
 
@@ -39,8 +39,8 @@
 1. 命名：**默认文件名（无后缀）= 英文权威版**；中文翻译加后缀 `*.zh.md`，成对存放于同一目录。**文件名一律 ASCII，禁止中文。**
 2. **英文为权威版本**：冲突时以英文为准，中文是翻译。
 3. 改动英文权威文档时，必须同步更新中文翻译；来不及就先在中文版头部标注 `> sync: 落后于英文（截至日期）`，并尽快补齐。
-4. 内部活文档（决策记录、模板、适配卡、计划）默认仅中文，无需英文版；需要时按需补译并登记配对。全量双语化见终极方案目录 B9。
-5. **翻译覆盖登记**：每新增或更名文档，必须同步更新 `docs/plans/translation-status.md` 的一行登记（成对 / 仅中文）；该表是双语覆盖的唯一权威视图。
+4. **全部文档双语成对**：docs/ 下每份文档都有英文权威版（默认文件名）与中文翻译（`.zh.md`）；新增文档必须同时创建两份，并在 translation-status 登记。（原"内部活文档默认仅中文"规则已于 2026-09-15 废止）
+5. **翻译覆盖登记**：每新增或更名文档，必须同步更新 `docs/plans/translation-status.zh.md` 的一行登记（成对 / 仅中文）；该表是双语覆盖的唯一权威视图。
 6. `scripts/check-docs.mjs` 会检查配对完整性与翻译新鲜度。
 
 ## Definition of Done（完成定义——本仓库）

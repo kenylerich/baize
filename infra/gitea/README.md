@@ -2,8 +2,8 @@
 > status: Active（生效）
 
 > **什么时候打开本包**：出现"第二个提交主体"——来了第二个同事，或 Agent 提交量大到人肉把关不过来。
-> 决策依据：`docs/decisions/20260914-infra-boundary-decisions.md`（D3 门禁、D5 容灾）。
-> 状态登记：`docs/plans/deferred-blueprints.md` B1。
+> 决策依据：`docs/decisions/20260914-infra-boundary-decisions.zh.md`（D3 门禁、D5 容灾）。
+> 状态登记：`docs/plans/deferred-blueprints.zh.md` B1。
 
 ## 1. 部署（10 分钟）
 

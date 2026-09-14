@@ -1,10 +1,11 @@
 # Progress
-> status: Active（生效）
+> status: Active — authoritative English template. Chinese translation: [progress.zh.md](./progress.zh.md)
+
 ## Last session (2026-09-14)
-- 完成 F001 登录（commit abc1234），e2e 通过
+- Done F001 login (commit abc1234), e2e passed
 ## Blocked
-- 无
+- none
 ## Next
-- F002 分页；注意列表接口需复用 repo 层分页 helper（见 docs/architecture.md）
+- F002 list pagination; reuse the repo-layer pagination helper (see docs/architecture.md)
 ## Known pitfalls
-- dev server 需先 `npm run db:migrate` 否则 smoke 失败
+- dev server needs `npm run db:migrate` first, or smoke fails

@@ -468,7 +468,7 @@ verify 层就是 CI。Harness 的本质变化是：验证从"人触发、合并�
 
 ## A. 领域适配卡
 
-空白适配卡模板已迁移至 [`docs/adapters/adapter-card-template.md`](../adapters/adapter-card-template.md)；各领域适配卡将随 Phase 2 在该目录下逐个建立。
+空白适配卡模板已迁移至 [`docs/adapters/adapter-card-template.zh.md`](../adapters/adapter-card-template.zh.md)；各领域适配卡将随 Phase 2 在该目录下逐个建立。
 
 ## B. 仓库模板文件清单
 

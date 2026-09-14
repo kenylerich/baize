@@ -373,10 +373,10 @@ pwd → git log --oneline -20 → 读 progress.md → 读 feature-list.json
 
 | 模板 | 用途 |
 |---|---|
-| [AGENTS.md](../templates/AGENTS.md) | 仓库知识库入口骨架（≤100 行的"地图"） |
+| [AGENTS.md](../templates/AGENTS.zh.md) | 仓库知识库入口骨架（≤100 行的"地图"） |
 | [feature-list.json](../templates/feature-list.json) | 任务看板：特性清单，验收标准=可执行命令 |
-| [progress.md](../templates/progress.md) | 进度文件：上次会话 / 卡点 / 下一步 / 已知坑 |
-| [main-loop-prompt.md](../templates/main-loop-prompt.md) | 单特性主循环标准提示词 |
+| [progress.md](../templates/progress.zh.md) | 进度文件：上次会话 / 卡点 / 下一步 / 已知坑 |
+| [main-loop-prompt.md](../templates/main-loop-prompt.zh.md) | 单特性主循环标准提示词 |
 
 ---
 

@@ -1,22 +1,24 @@
-# 工程模板库
-> status: Active（生效）
+# Engineering Templates
+> status: Active — authoritative English version. Chinese translation: [README.zh.md](./README.zh.md)
 
-这里是所有可复制模板的**唯一权威来源**：新项目初始化时从这里复制到目标仓库对应位置，按占位符修改。模板本身只能在本目录修改，改完通知各项目同步。
+This directory is the **single source of truth** for all copyable templates: when initializing a new project, copy from here into the target repo and adjust the placeholders. Templates only change in this directory; notify downstream projects after changes.
 
-| 文件 | 复制到目标仓库 | 用途 |
+| File | Copy to target repo | Purpose |
 |---|---|---|
-| [AGENTS.md](./AGENTS.md) | 仓库根 | Agent 入口"地图"（≤100 行，只做目录与铁律） |
-| [feature-list.json](./feature-list.json) | `tasks/` | 任务看板：特性清单，全部初始 `false`，验收标准=可执行命令 |
-| [progress.md](./progress.md) | `tasks/` | 进度文件：上次会话 / 卡点 / 下一步 / 已知坑 |
-| [main-loop-prompt.md](./main-loop-prompt.md) | 会话提示词 | 单特性主循环标准指令 |
-| [ci/](./ci/README.md) | 目标仓库 CI 配置 | 质量闸门适配层：GitHub / Gitea / GitLab 三平台模板（任务名必须为 `verify`） |
+| [AGENTS.md](./AGENTS.md) | repo root | Agent entry "map" (≤100 lines, table of contents + iron laws only) |
+| [feature-list.json](./feature-list.json) | `tasks/` | Task board: feature checklist, all initially `false`, acceptance = executable command |
+| [progress.md](./progress.md) | `tasks/` | Progress file: last session / blockers / next / known pitfalls |
+| [main-loop-prompt.md](./main-loop-prompt.md) | session prompt | Single-feature main-loop standard instruction |
+| [ci/](./ci/README.md) | target repo CI config | Quality-gate adapters: GitHub / Gitea / GitLab (job name must be `verify`) |
 
-## 待补充（Phase 1 交付物）
+Chinese versions of these templates live beside them as `*.zh.md`.
 
-- `scripts/` 骨架：`build.sh`、`run.sh`、`verify.sh`、`observe.sh`、`smoke.sh`（职责定义见[实施篇 2.2/2.3](../solution/vibe-coding-harness-plan.zh.md)）；
-- `docs/` 骨架：`architecture.md`、`quality.md`。
+## Pending (Phase 1 deliverables)
 
-## 使用纪律
+- `scripts/` skeletons: `build`, `run`, `verify`, `observe`, `smoke` — per B10, shipped as bash by default; target repos may reimplement in their own stack (Node/Python/…) keeping the same entry names;
+- `docs/` skeleton: `architecture.md`, `quality.md`.
 
-- 项目本地的"教训回灌"若具有通用性（所有项目都适用的规则），应反哺回本目录的模板；
-- 项目特有的规则留在项目本地，不要塞进模板。
+## Usage discipline
+
+- Lessons learned in a project that generalize to all projects must be fed back into this directory's templates;
+- Project-specific rules stay in the project — don't push them into these templates.

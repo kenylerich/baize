@@ -1,27 +1,27 @@
-# Roadmap（里程碑与状态）
-> status: Active（生效；活文档——完成即勾选）
+# Roadmap (Milestones & Status)
+> status: Active — authoritative English version. Chinese translation: [roadmap.zh.md](./roadmap.zh.md)
 >
-> 节奏：双周一个 sprint（[sprints/](./sprints/README.md)）；每月扫表（AGENTS.md 规则 5）。缺口编号见 [agile-gap-analysis.md](./agile-gap-analysis.md)。
+> Cadence: biweekly sprints ([sprints/](./sprints/README.md)); monthly register scan (AGENTS.md rule 5). Gap IDs per [agile-gap-analysis.md](./agile-gap-analysis.md).
 
-## Phase 0 · 治理层（已完成 ✓）
-- [x] 文档库 + 知识治理（调研/实施/模板/适配卡/决策/计划）— 2026-09-14
-- [x] 讨论入库机制 + 终极方案目录 — 2026-09-14
-- [x] 文档生命周期（status 行 / 归档标签 / 指纹清单 / 中英双语）— 2026-09-15
-- [x] 敏捷缺口分析建档（G1-G11）— 2026-09-15
-- [x] 跨平台质量闸门契约（GitHub / GitLab / Gitea）— 2026-09-15
-- [x] 分支保护启用（main 禁 force push / 禁删除）— 2026-09-15
+## Phase 0 · Governance layer (done ✓)
+- [x] Doc library + knowledge governance (research/solution/templates/adapters/decisions/plans) — 2026-09-14
+- [x] Capture-discussions mechanism + deferred blueprints register — 2026-09-14
+- [x] Document lifecycle (status lines / archive tags / fingerprints / bilingual) — 2026-09-15
+- [x] Agile gap analysis registered (G1–G11) — 2026-09-15
+- [x] Cross-platform quality gate contract (GitHub / GitLab / Gitea) — 2026-09-15
+- [x] Branch protection enabled (main: no force push / no deletion) — 2026-09-15
 
-## Sprint S2026-01 · 敏捷流动层 P0（进行中 → [sprints/S2026-01.md](./sprints/S2026-01.md)）
-- [ ] G1 issue 模板（.github/ISSUE_TEMPLATE/）
-- [ ] G3 DoD 成文（根 AGENTS.md + 仓库模板）
-- [ ] G2 sprint 机制运转（本文件 + sprints/）
-- [ ] G5 分支保护已启用 ✓（PR 门禁待 B1 触发条件）
-- [ ] T1 试点项目选定（人决策：选哪条业务线）
+## Sprint S2026-01 · Agile flow layer P0 (in progress → [sprints/S2026-01.md](./sprints/S2026-01.md))
+- [ ] G1 issue templates (.github/ISSUE_TEMPLATE/)
+- [ ] G3 DoD written down (root AGENTS.md + repo template)
+- [ ] G2 sprint mechanism running (this file + sprints/)
+- [ ] G5 branch protection ✓ force push/deletion disabled (PR gate waits for B1)
+- [ ] T1 pilot project selected (human decision: which business line)
 
-## Phase 1 · 通用核心模板化
-- [ ] repo-template 五脚本落地（build/run/verify/observe/smoke）
-- [ ] 第二领域（前端）适配卡
-- [ ] 每周 harness 例会制度化
+## Phase 1 · Templatize the universal core
+- [ ] repo-template with the five scripts (build/run/verify/observe/smoke)
+- [ ] Second-domain (frontend) adapter card
+- [ ] Weekly harness meeting institutionalized
 
-## Phase 2+ · 领域适配 / 平台化 / 规模化
-- 详见实施篇 Phase 2-4 与[终极方案目录](./deferred-blueprints.md)（B5-B7 关联）
+## Phase 2+ · Domain adapters / platformization / scale
+- See Implementation Guide Phases 2–4 and the [deferred blueprints register](./deferred-blueprints.md) (B5–B7)

@@ -2,7 +2,7 @@
 
 > status: Active（生效；中文翻译版；英文为权威版本 [quality-gates.md](./quality-gates.md)）
 >
-> 日期：2026-09-15。关联：决策 D10（`docs/decisions/20260915-multi-platform-quality-gates.md`）、D3、实施篇第四部分、终极方案目录 B1。
+> 日期：2026-09-15。关联：决策 D10（`docs/decisions/20260915-multi-platform-quality-gates.zh.md`）、D3、实施篇第四部分、终极方案目录 B1。
 
 ## 原则
 
@@ -23,7 +23,7 @@
 
 1. **一个裁判**：`scripts/verify.sh`——从仓库模板复制进每个项目，包含全部真正的判定逻辑；平台 CI 只负责调用它。任何平台特有逻辑不得混入。
 2. **一个名字**：CI 任务在所有平台上**必须叫 `verify`**——三个平台的合并门禁都按这个名字引用检查结果。
-3. **三份适配层**（在 [`docs/templates/ci/`](../templates/ci/README.md)）：
+3. **三份适配层**（在 [`docs/templates/ci/`](../templates/ci/README.zh.md)）：
 
 | 模板 | 复制到目标仓库 | CI 系统 |
 |---|---|---|

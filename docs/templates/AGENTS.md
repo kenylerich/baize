@@ -1,27 +1,28 @@
 # Repository Map
-> status: Active（生效）
-- 架构与分层规则: docs/architecture.md（铁律：UI 不得直接访问 Repo）
-- 质量评分: docs/quality.md
-- 当前计划: docs/plans/active/…；已完成: docs/plans/done/
-- 特性清单: tasks/feature-list.json；进度: tasks/progress.md
+> status: Active — authoritative English template. Chinese translation: [AGENTS.zh.md](./AGENTS.zh.md)
+
+- Architecture & layering rules: docs/architecture.md (iron law: UI must not access Repo directly)
+- Quality scores: docs/quality.md
+- Current plans: docs/plans/active/…; completed: docs/plans/done/
+- Feature list: tasks/feature-list.json; progress: tasks/progress.md
 
 # Working Protocol
-1. 每个会话开始：pwd → git log -20 → progress.md → feature-list.json → smoke.sh
-2. 一次只做一个特性；verify-feature.sh 通过后才可标记完成
-3. 每完成一步：更新 progress.md + 描述性 commit
-4. 卡住 30 分钟：写清卡点入 progress.md，跳过或求助，不要死磕
-5. 有歧义：先提问
-6. 新知识写 docs/ 对应文件，本文件只加指针
+1. Session start: pwd → git log -20 → read progress.md → read feature-list.json → smoke.sh
+2. One feature at a time; mark done only after verify-feature.sh passes
+3. After each step: update progress.md + descriptive commit
+4. Stuck for 30 minutes: write the blocker into progress.md, skip or ask for help — never grind
+5. Ambiguity: ask first
+6. New knowledge goes into the matching docs/ file; this file only holds pointers
 
-# Definition of Done（一条需求算完成的全部条件）
-1. 一次只做一个特性；实现前先写验收验证（verify-feature）
-2. scripts/verify.sh 通过（端到端级，非仅单测）
-3. tasks/feature-list.json 勾选 + tasks/progress.md 更新
-4. 相关文档同步（本文件只加指针，正文进 docs/）
-5. commit 写清"做了什么、为什么"；PR 关联 issue（Closes #N）
-6. 逐条对照验收标准自检通过（第二个提交主体出现后改为 1 个 Approve）
+# Definition of Done (all conditions for one requirement)
+1. One feature at a time; write the acceptance verification (verify-feature) before implementing
+2. scripts/verify.sh passes (end-to-end level, not just unit tests)
+3. tasks/feature-list.json ticked + tasks/progress.md updated
+4. Related docs synced (this file only gains pointers, body goes into docs/)
+5. commit states "what and why"; PR links the issue (Closes #N)
+6. Line-by-line self-check against acceptance criteria passes (becomes 1 Approve once a second committing subject exists)
 
-# Invariants（违反即 CI 失败）
-- 边界处必须显式解析数据形状
-- 结构化日志；禁止 YOLO 式数据探测
-- 文件 < 400 行
+# Invariants (violations fail CI)
+- Data shapes must be parsed explicitly at boundaries
+- Structured logging; no YOLO-style data probing
+- Files < 400 lines

@@ -1,15 +1,19 @@
-# 决策记录（ADR）
-> status: Active（生效）
+# Decision Records (ADR)
+> status: Active — authoritative English version. Chinese translation: [README.zh.md](./README.zh.md)
 
-记录"为什么这么设计"，与方案文档分离：方案写"是什么"，这里写"为什么"。
+Records "why it was designed this way": the solution docs describe the what, this directory records the why.
 
-## 约定
+## Conventions
 
-- 一条决策一个文件，命名：`YYYYMMDD-短标题.md`；
-- 字段：**背景 / 备选方案 / 决策 / 后果 / 状态**（提议 | 已接受 | 已废弃）；
-- 决策被推翻时不删文件，改状态为"已废弃"并注明替代决策。
+- One decision per file, named `YYYYMMDD-title.md` (ASCII only);
+- Fields: **Background / Alternatives / Decision / Consequences / Status** (proposed | accepted | deprecated);
+- When a decision is overturned, keep the file and mark it deprecated with a pointer to the replacement — never rewrite history silently.
 
-## 示例待写条目
+## Index
 
-- 为什么通用核心采用五个标准脚本（build/run/verify/observe/smoke）而非自由命名
-- 为什么文档目录按 research/solution/templates/adapters 分层
+| Date | Decision | Record |
+|---|---|---|
+| 2026-09-14 | Infrastructure boundaries: local git / remote / gates / sandbox / DR (D1–D5) | [20260914-infra-boundary-decisions.md](./20260914-infra-boundary-decisions.md) |
+| 2026-09-15 | Document lifecycle & bilingual mechanism (D6–D9) | [20260915-doc-lifecycle-and-bilingual.md](./20260915-doc-lifecycle-and-bilingual.md) |
+| 2026-09-15 | Multi-platform quality gates — GitHub / GitLab / Gitea (D10) | [20260915-multi-platform-quality-gates.md](./20260915-multi-platform-quality-gates.md) |
+| 2026-09-15 | Fingerprints in version management (D11) | [20260915-version-fingerprints.md](./20260915-version-fingerprints.md) |

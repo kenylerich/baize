@@ -1,41 +1,41 @@
-# 领域适配卡：<领域名>
-> status: Active（生效）
+# Domain Adapter Card: <domain-name>
+> status: Active — authoritative English template. Chinese translation: [adapter-card-template.zh.md](./adapter-card-template.zh.md)
 
-- 级别：T1/T2/T3/T4（判定标准见[实施篇 2.4](../solution/vibe-coding-harness-plan.zh.md)）
+- Tier: T1/T2/T3/T4 (criteria in [Implementation Guide 2.4](../solution/vibe-coding-harness-plan.md))
 
-## Q1 构建 → scripts/build.sh
+## Q1 Build → scripts/build.sh
 
-- 命令：…
-- 成功判定：退出码 0
-- 报错信息是否含修复指引：是/否（应为"是"）
+- Command: …
+- Success check: exit code 0
+- Do error messages contain fix instructions: yes/no (should be yes)
 
-## Q2 运行 → scripts/run.sh
+## Q2 Run → scripts/run.sh
 
-- 方式：无头 / 模拟器 / 真机
-- 依赖服务：…
-- 就绪判定（smoke）：…
+- Mode: headless / emulator / real device
+- Dependent services: …
+- Readiness check (smoke): …
 
-## Q3 验证 → scripts/verify.sh
+## Q3 Verify → scripts/verify.sh
 
-- 分层：单元 / 集成 / e2e / 静态
-- 关键断言：…
-- 性能/体积预算：…
+- Layers: unit / integration / e2e / static
+- Key assertions: …
+- Performance/size budgets: …
 
-## Q4 观测 → scripts/observe.sh
+## Q4 Observe → scripts/observe.sh
 
-- 眼睛（视觉证据）：截图 / DOM / 控件树 / 串口 / 波形
-- 耳朵（日志证据）：日志位置与格式
+- Eyes (visual evidence): screenshots / DOM / widget tree / serial / waveforms
+- Ears (log evidence): log locations and format
 
-## Q5 隔离
+## Q5 Isolation
 
-- 环境类型：容器 / VM / 模拟器 / 设备锁
-- 复原方式与耗时：…
-- 资源冲突点：…（端口/设备/共享文件）
+- Environment: container / VM / emulator / device lock
+- Restore method & time: …
+- Resource conflict points: … (ports / devices / shared files)
 
-## 领域铁律（同步写入目标仓库 docs/architecture.md）
+## Domain iron laws (mirror into the target repo's docs/architecture.md)
 
 - …
 
-## 已知坑（持续补充）
+## Known pitfalls (continuously appended)
 
 - …
