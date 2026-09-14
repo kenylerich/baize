@@ -21,6 +21,7 @@
 - **Decision**: layer 1, the git hash chain (automatic; any change leaves a trace); layer 2, remote (GitHub) branch settings **disallow force pushes and history rewrite** (one-time manual configuration); layer 3, `scripts/check-docs.sh` runs automatically on commits/PRs (link validity, bilingual pairing, translation freshness, stale-doc reminders).
 - **Rationale**: the hash chain guarantees "changes are always discoverable"; remote no-rewrite guarantees "locally rewritten history cannot be pushed"; the health check turns "knowledge-base freshness" from a slogan into a mechanical gate (mirrors OpenAI practice: CI validates knowledge-base structure and freshness).
 - **Optional enhancements**: SHA256 fingerprint manifest — **enabled 2026-09-15** (`scripts/doc-fingerprint.sh` + `MANIFEST.sha256`, verified by check-docs.sh and CI); GPG-signed commits — still deferred (see B8 in the deferred-blueprints register).
+- **Execution record (2026-09-15)**: layer 2 is now LIVE — branch protection on `main` enabled via GitHub API (`allow_force_pushes=false`, `allow_deletions=false`, verified via GET). The one-time manual configuration is done; no outstanding human step remains.
 
 ## D9 Bilingual: default filenames = authoritative English; `*.zh.md` = Chinese translation
 

@@ -1,0 +1,17 @@
+name: 缺陷（Bug）
+description: 现有功能不符合预期——能稳定复现的缺陷才能进 sprint
+labels: ["bug"]
+body:
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      description: 精确到命令 / 点击顺序
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果 vs 实际结果
+    validations:
+      required: true

@@ -1,0 +1,28 @@
+name: 需求（用户故事）
+description: 新需求录入——验收标准必须写成可执行命令，写不出 = 没想清楚，会被退回
+labels: ["feature"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: 背景 / 用户故事
+      description: 作为〈谁〉，我希望〈做什么〉，以便〈得到什么价值〉
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准（必须可执行）
+      description: 每条验收 = 一条可运行命令 + 预期结果。写不出可执行命令的需求会被退回重写。
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 优先级
+      options:
+        - P0-立即
+        - P1-本期
+        - P2-以后
+    validations:
+      required: true

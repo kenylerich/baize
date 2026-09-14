@@ -13,6 +13,14 @@
 5. 有歧义：先提问
 6. 新知识写 docs/ 对应文件，本文件只加指针
 
+# Definition of Done（一条需求算完成的全部条件）
+1. 一次只做一个特性；实现前先写验收验证（verify-feature）
+2. scripts/verify.sh 通过（端到端级，非仅单测）
+3. tasks/feature-list.json 勾选 + tasks/progress.md 更新
+4. 相关文档同步（本文件只加指针，正文进 docs/）
+5. commit 写清"做了什么、为什么"；PR 关联 issue（Closes #N）
+6. 逐条对照验收标准自检通过（第二个提交主体出现后改为 1 个 Approve）
+
 # Invariants（违反即 CI 失败）
 - 边界处必须显式解析数据形状
 - 结构化日志；禁止 YOLO 式数据探测
