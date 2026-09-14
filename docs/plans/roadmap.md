@@ -1,30 +1,41 @@
-# Roadmap (Milestones & Status)
+# Roadmap v2 (Milestones & Status)
 > status: Active — authoritative English version. Chinese translation: [roadmap.zh.md](./roadmap.zh.md)
 >
-> Cadence: biweekly sprints ([sprints/](./sprints/README.md)); monthly register scan (AGENTS.md rule 5). Gap IDs per [agile-gap-analysis.md](./agile-gap-analysis.md).
+> Cadence: biweekly sprints ([sprints/](./sprints/README.md)); monthly register scan (AGENTS.md rule 5).
+> Registers: gaps G1–G11 ([agile-gap-analysis](./agile-gap-analysis.md)) · deferred blueprints B1–B10 ([deferred-blueprints](./deferred-blueprints.md)) · decisions D1–D11 ([decisions/](../decisions/README.md)) · bilingual coverage ([translation-status](./translation-status.md)).
 
-## Phase 0 · Governance layer (done ✓)
-- [x] Doc library + knowledge governance (research/solution/templates/adapters/decisions/plans) — 2026-09-14
-- [x] Capture-discussions mechanism + deferred blueprints register — 2026-09-14
-- [x] Document lifecycle (status lines / archive tags / fingerprints / bilingual) — 2026-09-15
-- [x] Agile gap analysis registered (G1–G11) — 2026-09-15
-- [x] Cross-platform quality gate contract (GitHub / GitLab / Gitea) — 2026-09-15
-- [x] Branch protection enabled (main: no force push / no deletion) — 2026-09-15
+## Review log
 
-## Sprint S2026-01 · Agile flow layer P0 (in progress → [sprints/S2026-01.md](./sprints/S2026-01.md))
-- [ ] G1 issue templates (.github/ISSUE_TEMPLATE/)
-- [ ] G3 DoD written down (root AGENTS.md + repo template)
-- [ ] G2 sprint mechanism running (this file + sprints/)
-- [ ] G5 branch protection ✓ force push/deletion disabled (PR gate waits for B1)
-- [ ] T1 pilot project selected (human decision: which business line)
+| Date | Reviewer | Conclusion |
+|---|---|---|
+| 2026-09-15 | Team + agent | v1 directional structure fully consistent with research & design (no gaps in coverage). Executable clarity insufficient: original mission not an explicit milestone, Phase 1 lacked acceptance criteria, Phase 2+ was a pointer only, no metrics/mapping/review log → upgraded to v2 (8 fixes). |
 
-## Phase 1 · Templatize the universal core
-- [ ] repo-template with the five scripts (build/run/verify/observe/smoke)
-- [ ] Second-domain (frontend) adapter card
-- [ ] Weekly harness meeting institutionalized
+## Milestones
 
-## Phase 2+ · Domain adapters / platformization / scale
-- See Implementation Guide Phases 2–4 and the [deferred blueprints register](./deferred-blueprints.md) (B5–B7)
+| Milestone | Content | Acceptance criteria (executable) | Depends on | Estimate | Status |
+|---|---|---|---|---|---|
+| **M0 Governance layer** | doc library, capture-discussions, lifecycle, fingerprints, bilingual, gates contract | `node scripts/check-docs.mjs` passes; `doc-fingerprint.mjs verify` passes; 24 bilingual pairs registered; decisions D1–D11 recorded | — | — | **Done ✓ 2026-09-15** |
+| **M1 Agile flow P0** | G1–G5: issue templates, DoD, sprint mechanism, branch protection | Issue templates accept a real requirement; DoD written in both AGENTS files; S2026-01 running; main force-push/deletion disabled on at least one platform | — | Sprint S2026-01 | **In progress (4/6)** |
+| **M2 Engineering layer ready** (Phase 1) | repo-template: five scripts (build/run/verify/observe/smoke) + project knowledge skeleton (architecture.md / quality.md) + hooks | From repo-template, a T1 project initializes with one command, passes check-docs + fingerprint + its own verify.sh; G3-layer gap closed | M1 | ~1 week | Not started |
+| **M3 First real long task** (original mission) | pilot project completes one full cycle: init → requirement intake → single-feature loop ×≥3 → retrospective | ≥3 features closed through full DoD; retrospective held; improvement items landed in registers; G8/G9 exercised | M2 + **pilot selection (human decision, the only open item)** | 1 sprint | Blocked on pilot selection |
+| **M4 First domain adapter** (Phase 2) | first domain card + four scripts validated in a real domain | Card filled + scripts pass on a real project in that domain | M3 | per business | Not started |
+| **M5 Platform & scale** (Phase 3–4, trigger-based) | B5 (HIL farm) / B6 (Evaluator + GC) / B8 (GPG) / managed agents | Each B-item's own trigger condition | M3+ | per trigger | Not started |
+
+## Mapping to registers
+
+- M0 closed governance-layer items (decisions D1–D11, bilingual D9, fingerprints D11, gates D10);
+- M1 closes **G1–G5** (P0 flow gaps);
+- M2 closes the **③④ layer** build gaps (five scripts, project knowledge skeleton) and enables **G8/G9** with the pilot;
+- M3 closes **⑦ long-task practice** — the original mission;
+- M4 = **B7**; M5 = **B5 / B6 / B8** (trigger-based) plus Phase 3–4 platform items;
+- B1–B4 (Gitea authority, mirror, sandbox, DR) run on their own triggers, independent of milestones — currently B1 deployed & merged.
+
+## Metrics (is the roadmap itself succeeding)
+
+- Throughput: ≥3 features closed per sprint through full DoD (pilot phase baseline);
+- verify first-pass rate: ≥70% at pilot start, rising each sprint;
+- Struggle-point feedback rate: 100% of struggle points landed in registers (no verbal-only fixes);
+- Register freshness: monthly scan executed, zero unregistered "later" items in chat only.
 
 ## Gap ledger — environment vs. target architecture (assessed 2026-09-15)
 

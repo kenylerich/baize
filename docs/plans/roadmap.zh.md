@@ -1,30 +1,41 @@
-# Roadmap（里程碑与状态）
-> status: Active（生效；活文档——完成即勾选）
+# 路线图 v2（里程碑与状态）
+> status: Active（中文翻译版；权威版本为英文 [roadmap.md](./roadmap.md)）
 >
-> 节奏：双周一个 sprint（[sprints/](./sprints/README.zh.md)）；每月扫表（AGENTS.md 规则 5）。缺口编号见 [agile-gap-analysis.zh.md](./agile-gap-analysis.zh.md)。
+> 节奏：双周一个 sprint（[sprints/](./sprints/README.md)）；每月扫表（AGENTS.md 规则 5）。
+> 登记表：缺口 G1–G11（[agile-gap-analysis](./agile-gap-analysis.zh.md)）· 终极方案 B1–B10（[deferred-blueprints](./deferred-blueprints.zh.md)）· 决策 D1–D11（[decisions/](../decisions/README.zh.md)）· 双语覆盖（[translation-status](./translation-status.zh.md)）。
 
-## Phase 0 · 治理层（已完成 ✓）
-- [x] 文档库 + 知识治理（调研/实施/模板/适配卡/决策/计划）— 2026-09-14
-- [x] 讨论入库机制 + 终极方案目录 — 2026-09-14
-- [x] 文档生命周期（status 行 / 归档标签 / 指纹清单 / 中英双语）— 2026-09-15
-- [x] 敏捷缺口分析建档（G1-G11）— 2026-09-15
-- [x] 跨平台质量闸门契约（GitHub / GitLab / Gitea）— 2026-09-15
-- [x] 分支保护启用（main 禁 force push / 禁删除）— 2026-09-15
+## 评审记录
 
-## Sprint S2026-01 · 敏捷流动层 P0（进行中 → [sprints/S2026-01.zh.md](./sprints/S2026-01.zh.md)）
-- [ ] G1 issue 模板（.github/ISSUE_TEMPLATE/）
-- [ ] G3 DoD 成文（根 AGENTS.md + 仓库模板）
-- [ ] G2 sprint 机制运转（本文件 + sprints/）
-- [ ] G5 分支保护已启用 ✓（PR 门禁待 B1 触发条件）
-- [ ] T1 试点项目选定（人决策：选哪条业务线）
+| 日期 | 评审人 | 结论 |
+|---|---|---|
+| 2026-09-15 | 团队 + Agent | v1 的方向结构与调研、设计完全一致（覆盖无遗漏）；但可执行明确度不足：原始使命不是显式里程碑、Phase 1 缺验收标准、Phase 2+ 仅为指针、缺指标/映射/评审记录 → 升级为 v2（8 项修复）。 |
 
-## Phase 1 · 通用核心模板化
-- [ ] repo-template 五脚本落地（build/run/verify/observe/smoke）
-- [ ] 第二领域（前端）适配卡
-- [ ] 每周 harness 例会制度化
+## 里程碑
 
-## Phase 2+ · 领域适配 / 平台化 / 规模化
-- 详见实施篇 Phase 2-4 与[终极方案目录](./deferred-blueprints.zh.md)（B5-B7 关联）
+| 里程碑 | 内容 | 验收标准（可执行） | 依赖 | 预估 | 状态 |
+|---|---|---|---|---|---|
+| **M0 治理层** | 文档库、讨论入库、生命周期、指纹、双语、闸门契约 | `node scripts/check-docs.mjs` 通过；`doc-fingerprint.mjs verify` 通过；24 对双语已登记；决策 D1–D11 已记录 | — | — | **完成 ✓ 2026-09-15** |
+| **M1 敏捷流动层 P0** | G1–G5：issue 模板、DoD、sprint 机制、分支保护 | issue 模板能录入一条真实需求；DoD 写入两份 AGENTS；S2026-01 运行中；至少一个平台 main 禁 force push/删除 | — | Sprint S2026-01 | **进行中（4/6）** |
+| **M2 工程层就绪**（Phase 1） | repo-template：五脚本（build/run/verify/observe/smoke）+ 项目知识骨架（architecture.md / quality.md）+ hooks | 从 repo-template 一条命令初始化 T1 项目，通过 check-docs + 指纹 + 自身 verify.sh；③④层缺口关闭 | M1 | ~1 周 | 未开始 |
+| **M3 首个真实长任务**（原始使命） | 试点项目完成一次完整闭环：初始化 → 需求录入 → 单特性循环 ×≥3 → 回顾 | ≥3 个特性走完完整 DoD；回顾会已开；改进项已入库；G8/G9 已实际执行 | M2 + **试点选定（人类决策，唯一开口）** | 1 个 sprint | 等待试点选定 |
+| **M4 首个领域适配卡**（Phase 2） | 首个领域适配卡 + 四脚本在真实领域验证 | 卡片填写完成 + 脚本在该领域真实项目通过 | M3 | 按业务 | 未开始 |
+| **M5 平台与规模**（Phase 3–4，按触发） | B5（HIL 设备农场）/ B6（Evaluator + GC）/ B8（GPG）/ 托管 Agent | 各 B 项自身的触发条件 | M3+ | 按触发 | 未开始 |
+
+## 与登记表的映射
+
+- M0 关闭治理层（决策 D1–D11、双语 D9、指纹 D11、闸门 D10）；
+- M1 关闭 **G1–G5**（P0 流动缺口）；
+- M2 关闭 **③④层** 实现缺口（五脚本、项目知识骨架），并随试点启用 **G8/G9**；
+- M3 关闭 **⑦ 长任务实战**——原始使命；
+- M4 = **B7**；M5 = **B5 / B6 / B8**（按触发）及 Phase 3–4 平台项；
+- B1–B4（Gitea 权威、镜像、沙箱、容灾）按自身触发推进，与里程碑独立——当前 B1 已部署并合入。
+
+## 指标（roadmap 本身是否成功的度量）
+
+- 吞吐：试点期每个 sprint 经完整 DoD 关闭的特性 ≥3 个；
+- verify 一次通过率：试点起步 ≥70%，逐 sprint 提升；
+- 挣扎点回灌率：100% 的挣扎点落入登记表（不允许只有口头修正）；
+- 登记表新鲜度：每月扫表执行，聊天中不允许存在未登记的"以后再做"。
 
 ## 差距总账——环境 vs 目标架构（2026-09-15 盘点）
 
