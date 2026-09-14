@@ -1,6 +1,6 @@
 # 落地计划与进度
 
-路线图**总览**目前位于[实施篇第四部分](../solution/vibe-coding-harness-plan.md)（保持稳定，不承载进度）。Phase 0 启动后，在本目录建立活文档：
+路线图**总览**目前位于[实施篇第四部分](../solution/vibe-coding-harness-plan.zh.md)（保持稳定，不承载进度）。Phase 0 启动后，在本目录建立活文档：
 
 - `deferred-blueprints.md`：**终极方案目录（已建立）**——所有"现在不做、以后可能做"的方案登记于此，每月扫一次
 - `roadmap.md`：阶段里程碑与勾选状态（随进度更新）

@@ -1,7 +1,8 @@
 # Vibe Coding 开发环境搭建 · 完整实施方案
+> status: 生效（中文为权威版本，英文版为翻译）
 
 > **定位**：本文是"完整落地方案"（实施篇），面向**零基础读者**——先帮你把思路从零理顺，再给出一套可执行的搭建方案，覆盖**嵌入式开发与全部软件领域**。
-> **理论依据与文章出处**见调研篇《[harness-best-practices.md](../research/harness-best-practices.md)》。
+> **理论依据与文章出处**见调研篇《[harness-best-practices.zh.md](../research/harness-best-practices.zh.md)》。
 > **建议读法**：第一部分通读（约 30 分钟建立认知）→ 第二部分精读（方案核心）→ 直接跳到第三部分你所在的领域 → 按第四部分路线图开干。
 
 ---
@@ -479,4 +480,4 @@ verify 层就是 CI。Harness 的本质变化是：验证从"人触发、合并�
 
 ## 参考资料
 
-完整来源与逐篇要点见调研篇《[harness-best-practices.md](../research/harness-best-practices.md)》。主要来源：Anthropic（长任务 harness ×2、Managed Agents）、OpenAI（Harness engineering）、LangChain（Anatomy of an Agent Harness）、Martin Fowler/Thoughtworks（Harness engineering memo）、Mitchell Hashimoto（My AI adoption journey）。
+完整来源与逐篇要点见调研篇《[harness-best-practices.zh.md](../research/harness-best-practices.zh.md)》。主要来源：Anthropic（长任务 harness ×2、Managed Agents）、OpenAI（Harness engineering）、LangChain（Anatomy of an Agent Harness）、Martin Fowler/Thoughtworks（Harness engineering memo）、Mitchell Hashimoto（My AI adoption journey）。

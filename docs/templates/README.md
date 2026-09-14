@@ -11,7 +11,7 @@
 
 ## 待补充（Phase 1 交付物）
 
-- `scripts/` 骨架：`build.sh`、`run.sh`、`verify.sh`、`observe.sh`、`smoke.sh`（职责定义见[实施篇 2.2/2.3](../solution/vibe-coding-harness-plan.md)）；
+- `scripts/` 骨架：`build.sh`、`run.sh`、`verify.sh`、`observe.sh`、`smoke.sh`（职责定义见[实施篇 2.2/2.3](../solution/vibe-coding-harness-plan.zh.md)）；
 - `docs/` 骨架：`architecture.md`、`quality.md`。
 
 ## 使用纪律

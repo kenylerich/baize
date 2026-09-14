@@ -1,0 +1,13 @@
+name: docs-check
+# 文档门禁：链接有效性 / 双语配对 / 翻译新鲜度（见 scripts/check-docs.sh）
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # 新鲜度检查需要完整提交历史
+      - name: Run doc health check
+        run: bash scripts/check-docs.sh

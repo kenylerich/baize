@@ -1,6 +1,6 @@
 # 领域适配卡：<领域名>
 
-- 级别：T1/T2/T3/T4（判定标准见[实施篇 2.4](../solution/vibe-coding-harness-plan.md)）
+- 级别：T1/T2/T3/T4（判定标准见[实施篇 2.4](../solution/vibe-coding-harness-plan.zh.md)）
 
 ## Q1 构建 → scripts/build.sh
 

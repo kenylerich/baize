@@ -1,10 +1,11 @@
 # 标准通用 Vibe Coding 开发环境（Agent Harness）搭建指南
+> status: 生效（中文为权威版本，英文版为翻译）
 
 > 目标：总结业界（Anthropic、OpenAI、LangChain、Thoughtworks/Martin Fowler、Mitchell Hashimoto）关于"长时任务 Agent Harness"的最新实践，沉淀出一套**标准的、通用的开发环境搭建方法**，使团队能够以 Vibe Coding（人类掌舵、Agent 划桨）的方式完成长周期任务，同时保证高质量输出。
 >
 > 整理日期：2026-09-14。所有结论均来自文末列出的公开资料。
 >
-> 零基础读者请直接使用配套实施篇《[vibe-coding-harness-plan.md](../solution/vibe-coding-harness-plan.md)》（本篇为设计依据与出处汇总）。
+> 零基础读者请直接使用配套实施篇《[vibe-coding-harness-plan.zh.md](../solution/vibe-coding-harness-plan.zh.md)》（本篇为设计依据与出处汇总）。
 
 ---
 
