@@ -1,0 +1,21 @@
+{
+  "project": "demo-app",
+  "features": [
+    {
+      "id": "F001",
+      "name": "用户登录",
+      "acceptance": "scripts/verify-feature.sh F001",
+      "priority": 1,
+      "status": false,
+      "notes": ""
+    },
+    {
+      "id": "F002",
+      "name": "文章列表分页",
+      "acceptance": "scripts/verify-feature.sh F002",
+      "priority": 2,
+      "status": false,
+      "notes": "TASK: Implement feature F002"
+    }
+  ]
+}
