@@ -1,0 +1,15 @@
+{
+  "name": "deepseek-harness-plug",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Vibe Coding development environment (Agent Harness) — research and implementation",
+  "scripts": {
+    "test": "node --test scripts/tests/doc-fingerprint.test.mjs scripts/tests/check-docs.test.mjs",
+    "check": "node scripts/check-docs.mjs",
+    "fingerprint": "node scripts/doc-fingerprint.mjs"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

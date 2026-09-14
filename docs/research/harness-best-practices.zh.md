@@ -219,7 +219,7 @@ repo/
 │   ├── verify-feature.sh      # 单特性 e2e 验证
 │   ├── screenshot.sh          # UI 截图
 │   ├── smoke.sh               # 冒烟：服务起得来、首页可访问
-│   └── check-docs.sh          # 知识库新鲜度/交叉链接校验
+│   └── check-docs.mjs          # 知识库新鲜度/交叉链接校验
 ├── docs/
 │   ├── architecture.md        # 分层图 + 依赖方向规则
 │   ├── quality.md             # 按域/按层的质量评分与差距

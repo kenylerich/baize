@@ -1,5 +1,5 @@
 name: docs-check
-# 文档门禁：链接有效性 / 双语配对 / 翻译新鲜度（见 scripts/check-docs.sh）
+# 文档门禁：链接有效性 / 双语配对 / 翻译新鲜度 / 状态行 / 指纹清单（scripts/check-docs.mjs）
 on: [push, pull_request]
 
 jobs:
@@ -8,6 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0    # 新鲜度检查需要完整提交历史
-      - name: Run doc health check
-        run: bash scripts/check-docs.sh
+          fetch-depth: 0    # 翻译新鲜度检查需要完整提交历史
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Doc health check
+        run: node scripts/check-docs.mjs
+      - name: Script unit tests
+        run: npm test

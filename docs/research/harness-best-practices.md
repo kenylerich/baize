@@ -225,7 +225,7 @@ repo/
 │   ├── verify-feature.sh      # per-feature e2e verification
 │   ├── screenshot.sh          # UI screenshots
 │   ├── smoke.sh               # smoke: server boots, front page reachable
-│   └── check-docs.sh          # knowledge-base freshness / cross-link validation
+│   └── check-docs.mjs          # knowledge-base freshness / cross-link validation
 ├── docs/
 │   ├── architecture.md        # layering + dependency direction rules
 │   ├── quality.md             # quality scores and gaps by domain/layer
