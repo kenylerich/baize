@@ -29,7 +29,7 @@
 ## Document Lifecycle（文档生命周期）
 
 1. **状态行**：每份文档头部必须有 `> status:` 行，取值：`Active（生效）` / `Superseded（已过时 → 看xxx，附链接）` / `Deprecated（已废弃，注明原因）`。文档被新版本取代时，旧文档**原地保留**、状态改"已过时"并加指向链接——**禁止搬进归档文件夹**（一个知识一个家）。
-2. **归档 = 打标签**：每月给仓库打存档标签 `archive-YYYY-MM` 并推送远端；git 本身已永久保存每个历史版本。
+2. **归档 = 打版本标签**：每月用 `bash scripts/doc-fingerprint.sh tag archive-YYYY-MM` 打标签——脚本先校验清单一致性，再把**版本指纹**（集合 SHA256 前 12 位）写入标签信息；版本间变更用 `doc-fingerprint.sh changes <旧标签>` 查看，任意历史版本用 `verify-ref <标签>` 复核完整性。git 本身已永久保存每个历史版本。
 3. **新鲜度**：最后修改时间由 git 自动记录，**禁止手写版本号**；标"生效"但超过 6 个月未更新的文档，由体检脚本提示人工确认。
 4. **防篡改**：git 哈希链（自动留痕）+ 远端禁止改写历史（一次性设置）+ `scripts/check-docs.sh` 提交时自动体检（链接 / 双语配对 / 新鲜度 / 指纹）。
 5. **指纹清单**：`MANIFEST.sha256` 记录全部受管文件（文档、脚本、workflow、infra 配置）的 SHA256。文件变更的**同一提交**内必须重新生成清单（`bash scripts/doc-fingerprint.sh generate`）；体检与 CI 自动校验，对不上即失败。
