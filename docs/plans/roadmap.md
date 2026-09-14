@@ -21,6 +21,39 @@
 | **M4 First domain adapter** (Phase 2) | first domain card + four scripts validated in a real domain | Card filled + scripts pass on a real project in that domain | M3 | per business | Not started |
 | **M5 Platform & scale** (Phase 3–4, trigger-based) | B5 (HIL farm) / B6 (Evaluator + GC) / B8 (GPG) / managed agents | Each B-item's own trigger condition | M3+ | per trigger | Not started |
 
+## Pending item checklist (concrete gaps, itemized)
+
+Checked = done. Source IDs map to the registers ([G](./agile-gap-analysis.md) / [B](./deferred-blueprints.md) / milestone).
+
+### M1 · Agile flow P0
+- [ ] File the first real requirement in GitHub Issues (G1 put to use)
+- [ ] Conventional-commits convention adopted from the next commit (G9, recorded in AGENTS)
+
+### M2 · Engineering layer (scripts & skeleton)
+- [ ] `build` script skeleton (repo-template)
+- [ ] `run` script skeleton
+- [ ] `verify` + `verify-feature` script skeletons
+- [ ] `observe` + `smoke` script skeletons
+- [ ] Pre-push hook on this repo: check-docs + fingerprint automatically (can be done immediately)
+- [ ] Project knowledge skeleton: architecture.md / quality.md templates
+- [ ] Custom linter rule set (Phase 3)
+- [ ] Evaluator + GC agents (B6, trigger-based)
+
+### ④ Environment
+- [x] Gitea main branch protection (direct push limited to whitelist kenyle) — enabled via API 2026-09-15
+- [ ] push mirror to GitHub (B2, needs fine-grained PAT — human step)
+- [ ] Image matrix builds (base/web/backend/…)
+- [ ] Per-worktree ephemeral observability stack (Phase 3)
+
+### ⑤ Security
+- [ ] GitHub fine-grained PAT issuance (human step, for B2)
+- [ ] Vault + proxy (B3, trigger-based)
+
+### ⑥⑦ Domain & practice
+- [ ] Select T1 pilot business line (the only open item)
+- [ ] First domain adapter card (M4)
+- [ ] First real long-task sprint (M3)
+
 ## Mapping to registers
 
 - M0 closed governance-layer items (decisions D1–D11, bilingual D9, fingerprints D11, gates D10);

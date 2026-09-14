@@ -21,6 +21,39 @@
 | **M4 首个领域适配卡**（Phase 2） | 首个领域适配卡 + 四脚本在真实领域验证 | 卡片填写完成 + 脚本在该领域真实项目通过 | M3 | 按业务 | 未开始 |
 | **M5 平台与规模**（Phase 3–4，按触发） | B5（HIL 设备农场）/ B6（Evaluator + GC）/ B8（GPG）/ 托管 Agent | 各 B 项自身的触发条件 | M3+ | 按触发 | 未开始 |
 
+## 待办明细清单（具体缺口逐项化）
+
+勾选 = 完成。编号对应登记表（[G](./agile-gap-analysis.zh.md) / [B](./deferred-blueprints.zh.md) / 里程碑）。
+
+### M1 · 敏捷流动 P0
+- [ ] 在 GitHub Issues 录入第一条真实需求（G1 实用化）
+- [ ] 下次提交起采用 conventional commits 规范（G9，写入 AGENTS）
+
+### M2 · 工程层（脚本与骨架）
+- [ ] build 脚本骨架（repo-template）
+- [ ] run 脚本骨架
+- [ ] verify + verify-feature 脚本骨架
+- [ ] observe + smoke 脚本骨架
+- [ ] 本仓库 pre-push hook：自动 check-docs + 指纹（可立即做）
+- [ ] 项目知识骨架：architecture.md / quality.md 模板
+- [ ] 自定义 linter 规则集（Phase 3）
+- [ ] Evaluator + GC Agent（B6，触发制）
+
+### ④ 环境
+- [x] Gitea main 分支保护（直推限白名单 kenyle）——2026-09-15 经 API 启用
+- [ ] push mirror 到 GitHub（B2，需细粒度 PAT——人工步骤）
+- [ ] 镜像矩阵构建（base/web/backend/…）
+- [ ] 每 worktree 临时可观测性栈（Phase 3）
+
+### ⑤ 安全
+- [ ] GitHub 细粒度 PAT 签发（人工步骤，B2 用）
+- [ ] vault + 代理（B3，触发制）
+
+### ⑥⑦ 领域与实战
+- [ ] 选定 T1 试点业务线（唯一开口）
+- [ ] 首张领域适配卡（M4）
+- [ ] 首个真实长任务 sprint（M3）
+
 ## 与登记表的映射
 
 - M0 关闭治理层（决策 D1–D11、双语 D9、指纹 D11、闸门 D10）；
