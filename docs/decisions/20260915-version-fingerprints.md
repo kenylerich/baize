@@ -1,4 +1,5 @@
 # Decision Record: Fingerprints in Version Management (D11)
+> status: Active（生效）
 
 - Date: 2026-09-15
 - Status: Accepted
