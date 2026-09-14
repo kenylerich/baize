@@ -82,6 +82,17 @@ export function findMissingStatus(root = process.cwd()) {
   return markdownFiles(root).filter((rel) => !fs.readFileSync(path.join(root, rel), 'utf8').includes('status:'));
 }
 
+// 中文翻译的内容级检查：*.zh.md 必须真的包含中文（防止"改名未翻译"的假翻译）。
+// 返回 CJK 字符数低于 minCjk 的可疑文件。
+export function suspectUntranslated(root = process.cwd(), minCjk = 10) {
+  return markdownFiles(root)
+    .filter((rel) => rel.endsWith('.zh.md'))
+    .filter((rel) => {
+      const cjk = fs.readFileSync(path.join(root, rel), 'utf8').match(/[\u4e00-\u9fff]/g);
+      return !cjk || cjk.length < minCjk;
+    });
+}
+
 function gitTime(file, root = process.cwd()) {
   try {
     return Number(execFileSync('git', ['log', '-1', '--format=%ct', '--', file], { cwd: root }).toString().trim());
@@ -122,9 +133,13 @@ export function runAllChecks(root = process.cwd()) {
   report.push('== [3/5] 翻译新鲜度（中文翻译不应落后英文权威版）==');
   for (const w of translationLag(root)) report.push(w);
 
-  report.push('== [4/5] 状态行（所有文档必须有 > status: 行）==');
+  report.push('== [4/5] 状态行与中文内容检查（.zh.md 必须真的含中文）==');
   for (const f of findMissingStatus(root)) {
     report.push(`  [缺状态行] ${f}`);
+    errors += 1;
+  }
+  for (const f of suspectUntranslated(root)) {
+    report.push(`  [疑似未翻译] ${f}（.zh.md 内容不含中文）`);
     errors += 1;
   }
 

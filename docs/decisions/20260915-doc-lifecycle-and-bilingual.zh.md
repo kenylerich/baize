@@ -1,33 +1,33 @@
-# Decision Record: Document Lifecycle & Bilingual Mechanism
+# 决策记录：文档生命周期与双语机制
+> status: Active（生效；中文翻译版；权威版本为英文 [20260915-doc-lifecycle-and-bilingual.md](./20260915-doc-lifecycle-and-bilingual.md)）
 
-- Date: 2026-09-15 (revised same day — see D9 revision note)
-- Status: Accepted
-- Background: the doc library needs three guarantees — historical versions preserved (archival), fresh/stale marking, tamper resistance — plus bilingual (English/Chinese) documentation. Cross-references: root [AGENTS.md](../../AGENTS.md) (Document Lifecycle / Bilingual Rules), `scripts/check-docs.mjs`.
+- 日期：2026-09-15（同日修订——见 D9 修订说明）
+- 状态：已接受
+- 背景：文档库需要三项保证——历史版本保留（归档）、新鲜/过时标记、防篡改——以及中英双语支持。交叉引用：仓库根 [AGENTS.md](../../AGENTS.md)（Document Lifecycle / Bilingual Rules 两节）、`scripts/check-docs.mjs`。
 
-## D6 Archival uses git tags, not an archive folder
+## D6 归档使用 git 标签，不建归档文件夹
 
-- **Decision**: historical preservation relies entirely on git (every version is permanently kept by nature); a snapshot tag `archive-YYYY-MM` is pushed monthly.
-- **Rationale**: moving old docs into an "archive folder" creates two copies of the same document, violating the "one home per knowledge" invariant, and stale copies never follow updates. A tag is a zero-cost snapshot; any old version is one command away.
-- **Rejected alternative**: an `archive/` directory with copied old files (dual sources of truth, guaranteed rot).
+- **决定**：历史保留完全依赖 git（天然永久保存每个版本）；每月打快照标签 `archive-YYYY-MM` 并推送远端。
+- **理由**：把旧文档搬进"归档文件夹"会造成同一文档两份副本，违反"一个知识一个家"铁律，且旧副本不会随新文档更新。标签是零成本快照，翻旧版一条命令。
+- **否决的备选**：archive/ 目录 + 复制旧文件（双份真相，必腐烂）。
 
-## D7 Fresh/stale marking uses a status line + git time; handwritten version numbers rejected
+## D7 新鲜/过时标识用"状态行 + git 时间"，否决人写版本号
 
-- **Decision**: every doc carries a `> status:` header line (`Active` / `Superseded → see xxx` / `Deprecated`); last-modified time is recorded automatically by git.
-- **Rationale**: freshness is really "is this still valid" — a validity question, not a time question. Yesterday's doc can be wrong; last year's can be valid; time is a reference only. Hand-maintained version numbers will forget to bump, and a wrong version number is worse than none.
-- **Rejected alternative**: hand-written v1.0/v1.2 headers.
+- **决定**：每份文档头部一行 `> status:`（`Active` / `Superseded → 看xxx` / `Deprecated`）；最后修改时间由 git 自动记录。
+- **理由**：新鲜度本质是"还算不算数"——是有效性问题，不是时间问题。昨天的文档可能错，去年的可能有效，时间只做参考。人手维护版本号必忘记更新，错误版本号比没有更危险。
+- **否决的备选**：文档头部手写 v1.0/v1.2 版本号。
 
-## D8 Tamper resistance: three layers — hash chain + remote no-rewrite + automated health check
+## D8 防篡改三层：哈希链 + 远端禁改写 + 自动体检
 
-- **Decision**: layer 1, the git hash chain (automatic; any change leaves a trace); layer 2, remote (GitHub) branch settings **disallow force pushes and history rewrite** (one-time manual configuration); layer 3, `scripts/check-docs.mjs` runs automatically on commits/PRs (link validity, bilingual pairing, translation freshness, stale-doc reminders).
-- **Rationale**: the hash chain guarantees "changes are always discoverable"; remote no-rewrite guarantees "locally rewritten history cannot be pushed"; the health check turns "knowledge-base freshness" from a slogan into a mechanical gate (mirrors OpenAI practice: CI validates knowledge-base structure and freshness).
-- **Optional enhancements**: SHA256 fingerprint manifest — **enabled 2026-09-15** (`scripts/doc-fingerprint.mjs` + `MANIFEST.sha256`, verified by check-docs.mjs and CI); GPG-signed commits — still deferred (see B8 in the deferred-blueprints register).
-- **Execution record (2026-09-15)**: layer 2 is now LIVE — branch protection on `main` enabled via GitHub API (`allow_force_pushes=false`, `allow_deletions=false`, verified via GET). The one-time manual configuration is done; no outstanding human step remains.
+- **决定**：第一层 git 哈希链（自动，改动必留痕）；第二层远端分支设置**禁止 force push 与改写历史**；第三层 `scripts/check-docs.mjs` 在提交/PR 时自动运行（链接有效性、双语配对、翻译新鲜度、超期文档提醒）。
+- **理由**：哈希链保证"改了必被发现"；远端禁改写保证"本地篡改推不上去"；体检脚本把"知识库新鲜度"从口号变成机械门禁（对应 OpenAI 实践：用 CI 校验知识库结构与新鲜度）。
+- **可选增强**：SHA256 指纹清单——**2026-09-15 已启用**（`scripts/doc-fingerprint.mjs` + `MANIFEST.sha256`，由 check-docs.mjs 与 CI 校验）；GPG 签名提交——仍推迟（见终极方案目录 B8）。
+- **执行记录（2026-09-15）**：第二层已生效——经 GitHub API 为 `main` 启用分支保护（`allow_force_pushes=false`、`allow_deletions=false`，并经 GET 验证）。无剩余人工步骤。
 
-## D9 Bilingual: default filenames = authoritative English; `*.zh.md` = Chinese translation
+## D9 双语：默认文件名 = 英文权威版；`*.zh.md` = 中文翻译
 
-- **Decision**: the default filename (no suffix) is the **authoritative English** document; the Chinese translation carries the `.zh.md` suffix, paired in the same directory. **Filenames are always ASCII — Chinese characters are forbidden.** Chinese is a translation, not the authority; when they conflict, English wins.
-- **Scope**: first batch of pairs = root README, docs map, Research Summary, Implementation Guide. Internal living docs (decisions, templates, adapter cards, plans) are Chinese-only by default.
-- **Rationale**: user decision (2026-09-15). ASCII filenames keep the repo tooling- and sharing-friendly; English-as-default matches platform conventions (e.g., GitHub renders `README.md`); designating one authority prevents the two language versions drifting apart. Double-writing everything would double maintenance cost, so translation is scoped to docs with actual English readers.
-- **Revision note**: an earlier draft of this decision (same day) designated Chinese as authoritative; revised to English-authoritative + ASCII-only filenames before any content depended on the old choice.
-- **Rejected alternatives**: `en/`+`zh/` mirror directories (duplicated trees, opaque pairing); Chinese file names; no designated authority.
-- **Expansion trigger**: full bilingualization = B9 in the deferred-blueprints register.
+- **决定**：默认文件名（无后缀）为**英文权威**文档；中文翻译使用 `.zh.md` 后缀，成对存放于同一目录。**文件名一律 ASCII——禁止中文字符。**中文是翻译而非权威；冲突时以英文为准。
+- **范围**：按 2026-09-15 团队决定，`docs/` 下全部文档均为双语成对（24 对，见 `docs/plans/translation-status.md`）。仓库根 `AGENTS.md` 与 `infra/gitea/README.md` 为仅中文的操作文件，已登记在覆盖表中。
+- **理由**：ASCII 文件名让仓库对工具链和分享更友好；英文默认符合平台惯例（如 GitHub 渲染 `README.md`）；指定唯一权威防止两个语言版本各自漂移。
+- **修订说明**：本决策的早期草案（同日）曾指定中文为权威、内部文档仅中文；在任何内容依赖旧选择之前已修订为"英文权威 + docs/ 全部成对"。
+- **否决的备选**：`en/`+`zh/` 镜像目录（目录树翻倍、配对关系不透明）；中文文件名；不指定权威。
