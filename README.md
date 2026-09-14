@@ -10,18 +10,21 @@ Vibe Coding 开发环境（Agent Harness）的调研与落地方案仓库。
 | 查设计依据、出处、失败模式 | [调研篇：业界最佳实践总结](./docs/research/harness-best-practices.md) |
 | 动手搭建新项目 | 复制[模板库](./docs/templates/)，按[领域适配卡](./docs/adapters/)接入 |
 | 了解"当初为什么这么定" | [决策记录](./docs/decisions/README.md) |
+| 翻"以后再说"的方案 | [终极方案目录](./docs/plans/deferred-blueprints.md)（每月扫一次） |
 
 ## 目录结构
 
 ```
 deepseek-harness-plug/
+├── AGENTS.md        # 本仓库工作守则："讨论入库机制"（人和 AI 进门先读）
+├── infra/           # 未启用的基础设施部署包（gitea 门禁等），按终极方案目录触发
 └── docs/
     ├── research/    # 调研篇：业界实践逐篇总结、共识、反模式、出处
     ├── solution/    # 实施篇：零基础思路 + 完整方案（通用核心 + 领域适配器）+ 路线图
     ├── templates/   # 可复制工程模板（唯一权威来源）
     ├── adapters/    # 领域适配卡（每领域一张）
     ├── decisions/   # 决策记录（ADR）
-    └── plans/       # 落地计划与进度（Phase 0 启动后为活文档）
+    └── plans/       # 落地计划、进度、终极方案目录（活文档）
 ```
 
 ## 一图看懂核心公式

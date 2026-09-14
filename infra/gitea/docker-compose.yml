@@ -1,0 +1,32 @@
+# Gitea 评审门禁部署包（终极方案 B1，未启用）
+# 启用条件与决策：docs/decisions/20260914-基础设施边界决策.md（D3）
+# 启用步骤：同目录 README.md
+
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    restart: always
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    volumes:
+      - ./gitea-data:/data    # 仓库、账号、PR 评审记录全在这里；备份它=备份一切（B4）
+    ports:
+      - "3000:3000"           # Web 界面 + HTTP git 协议
+      - "2222:22"             # SSH git 协议
+
+  # CI 执行器：跑 PR 的 verify 门禁（Gitea Actions，语法兼容 GitHub Actions）
+  # 首次使用需在 Gitea 后台生成 runner token 填入下方环境变量，见 README.md 第 4 节
+  act_runner:
+    image: gitea/act_runner:latest
+    container_name: gitea-act-runner
+    restart: always
+    depends_on:
+      - gitea
+    volumes:
+      - ./runner-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - GITEA_INSTANCE_URL=http://gitea:3000
+      # - GITEA_RUNNER_REGISTRATION_TOKEN=在 Gitea 管理后台生成后填入

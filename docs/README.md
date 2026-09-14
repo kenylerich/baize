@@ -11,7 +11,7 @@ docs/
 ├── templates/    # 可复制工程模板（AGENTS.md、任务看板、进度文件、主循环提示词…）
 ├── adapters/     # 领域适配卡：接入新领域时填一张卡（build/run/verify/observe/sandbox 五问）
 ├── decisions/    # 决策记录（ADR）：为什么这么设计
-└── plans/        # 落地计划与进度：Phase 0 启动后的活文档
+└── plans/        # 落地计划、进度、终极方案目录（deferred-blueprints.md）：活文档
 ```
 
 ## 阅读路径
@@ -23,6 +23,7 @@ docs/
 ## 维护规则
 
 - **唯一权威来源**：模板只改 `templates/`，适配卡只改 `adapters/`；任何文档不得抄一份副本，需要时只放链接；
+- **讨论入库**：聊出结论当场落盘，"以后再说"的必须登记进 [plans/deferred-blueprints.md](plans/deferred-blueprints.md)——完整规则见根目录 [AGENTS.md](../AGENTS.md)；
 - **决策留痕**：影响方案走向的决定写入 `decisions/`（一条一文件，命名 `YYYYMMDD-短标题.md`）；
 - **进度与内容分离**：调研篇/实施篇保持稳定，实施进度一律进 `plans/`；
 - **链接自检**：移动或重命名文件后，必须更新本文件、根 README 及文内交叉链接。
