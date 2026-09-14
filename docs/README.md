@@ -30,7 +30,7 @@ docs/
 
 - **Single source of truth**: templates only change in `templates/`, adapter cards only in `adapters/`; never copy content elsewhere, link instead;
 - **Capture discussions**: conclusions land in the repo immediately; "later" items must be registered in [plans/deferred-blueprints.md](plans/deferred-blueprints.md) — full rules in root [AGENTS.md](../AGENTS.md);
-- **Bilingual**: English (default filenames) is authoritative; every change to an authoritative doc must be mirrored in the `.zh.md` translation, or the translation marked "behind"; mechanically checked by `scripts/check-docs.mjs`;
+- **Bilingual**: English (default filenames) is authoritative; every change to an authoritative doc must be mirrored in the `.zh.md` translation, or the translation marked "behind"; mechanically checked by `scripts/check-docs.mjs`. Coverage status (paired / zh-only) is tracked in [plans/translation-status.md](plans/translation-status.md);
 - **Record decisions**: write them into `decisions/` (one file each, named `YYYYMMDD-title.md`, ASCII only);
 - **Separate progress from content**: research/solution docs stay stable; progress goes into `plans/`;
 - **Link hygiene**: after moving/renaming files, update this map, the root README and all cross-links (the check script backstops this).
