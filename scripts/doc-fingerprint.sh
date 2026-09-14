@@ -20,14 +20,14 @@ files() {
   } | sed 's#^\./##' | LC_ALL=C sort
 }
 
-# 当前所有受管文件的 "路径 指纹" 列表（按路径排序）
+# 当前所有受管文件的 "路径 指纹" 列表（按路径排序；兼容 Windows 的 * 二进制标记）
 hashes_now() {
-  files | while read -r f; do sha256sum "$f" | sed -E 's/^([0-9a-f]{64})  (.*)$/\2 \1/'; done | LC_ALL=C sort
+  files | while read -r f; do sha256sum "$f" | sed -E 's/^([0-9a-f]{64}) [ *](.*)$/\2 \1/'; done | LC_ALL=C sort
 }
 
 case "${1:-verify}" in
   generate)
-    files | while read -r f; do sha256sum "$f"; done > "$MANIFEST.tmp"
+    files | while read -r f; do sha256sum "$f" | sed -E 's/^([0-9a-f]{64}) \*/\1  /'; done > "$MANIFEST.tmp"
     mv "$MANIFEST.tmp" "$MANIFEST"
     echo "清单已生成：$MANIFEST（$(wc -l < "$MANIFEST") 个文件）。请与本次文件变更放在同一提交里。"
     ;;
@@ -53,7 +53,7 @@ case "${1:-verify}" in
     ref="${2:?用法: changes <ref>（tag 或 commit）}"
     git cat-file -e "$ref:MANIFEST.sha256" 2>/dev/null || { echo "[错误] $ref 上没有清单"; exit 1; }
     tmp=$(mktemp -d)
-    git show "$ref:MANIFEST.sha256" | sed -E 's/^([0-9a-f]{64})  (.*)$/\2 \1/' | LC_ALL=C sort > "$tmp/old"
+    git show "$ref:MANIFEST.sha256" | sed -E 's/^([0-9a-f]{64}) [ *](.*)$/\2 \1/' | LC_ALL=C sort > "$tmp/old"
     hashes_now > "$tmp/new"
     echo "== 相对版本 $ref 的文件级变更 =="
     join "$tmp/old" "$tmp/new" 2>/dev/null | awk '$2!=$3 {print "  [修改] " $1}'
