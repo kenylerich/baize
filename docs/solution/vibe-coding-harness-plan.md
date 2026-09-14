@@ -1,9 +1,9 @@
 # Vibe Coding Development Environment: Complete Implementation Guide
 
-> status: Active — English translation. **The Chinese version ([vibe-coding-harness-plan.zh.md](./vibe-coding-harness-plan.zh.md)) is authoritative.**
+> status: Active — authoritative English version. Chinese translation: [vibe-coding-harness-plan.zh.md](./vibe-coding-harness-plan.zh.md).
 >
 > **Positioning**: this is the "complete implementation guide" (the practical volume), written for **readers with zero background** — first it organizes your thinking from zero, then delivers an executable setup plan covering **embedded development and all software domains**.
-> **Design rationale and sources**: see the Research Summary [harness-best-practices.en.md](../research/harness-best-practices.en.md).
+> **Design rationale and sources**: see the Research Summary [harness-best-practices.md](../research/harness-best-practices.md).
 > **Suggested reading**: read Part 1 end-to-end (~30 min to build the mental model) → study Part 2 (the plan's core) → jump straight to your domain in Part 3 → execute via the roadmap in Part 4.
 
 ---
@@ -481,4 +481,4 @@ See Part 1, section 1.4.
 
 ## References
 
-Full sources and per-source digests: the Research Summary [harness-best-practices.en.md](../research/harness-best-practices.en.md). Main sources: Anthropic (two long-running-harness posts, Managed Agents), OpenAI (Harness engineering), LangChain (Anatomy of an Agent Harness), Martin Fowler/Thoughtworks (Harness engineering memo), Mitchell Hashimoto (My AI adoption journey).
+Full sources and per-source digests: the Research Summary [harness-best-practices.md](../research/harness-best-practices.md). Main sources: Anthropic (two long-running-harness posts, Managed Agents), OpenAI (Harness engineering), LangChain (Anatomy of an Agent Harness), Martin Fowler/Thoughtworks (Harness engineering memo), Mitchell Hashimoto (My AI adoption journey).

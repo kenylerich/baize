@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# 文档体检脚本（文档门禁）：链接有效性 / 双语配对 / 翻译新鲜度 / 存量状态行
+# 文档体检脚本（文档门禁）：链接有效性 / 双语配对 / 翻译新鲜度 / 状态行
+# 语言约定：默认文件名（*.md）= 英文权威版；*.zh.md = 中文翻译
 # 用法：bash scripts/check-docs.sh   （本地运行，或在 CI 中作为合并门禁）
 # 退出码：0=通过；1=有错误（提醒不阻塞）
 set -uo pipefail
@@ -18,37 +19,39 @@ for f in $(find . -name '*.md' -not -path './.git/*'); do
   done
 done
 
-echo "== [2/4] 双语配对（登记在案的成对文档必须有 .en.md）=="
-PAIRS=(
+echo "== [2/4] 双语配对（登记在案的权威文档必须有中文翻译 *.zh.md）=="
+AUTH=(
   "README.md"
   "docs/README.md"
-  "docs/research/harness-best-practices.zh.md"
-  "docs/solution/vibe-coding-harness-plan.zh.md"
+  "docs/research/harness-best-practices.md"
+  "docs/solution/vibe-coding-harness-plan.md"
 )
-for z in "${PAIRS[@]}"; do
-  if [[ "$z" == *.zh.md ]]; then e="${z%.zh.md}.en.md"; else e="${z%.md}.en.md"; fi
-  if [ -f "$z" ] && [ ! -f "$e" ]; then
-    echo "  [缺英文版] $z"
+for a in "${AUTH[@]}"; do
+  zh="${a%.md}.zh.md"
+  if [ -f "$a" ] && [ ! -f "$zh" ]; then
+    echo "  [缺中文翻译] $a"
     errors=$((errors+1))
   fi
 done
 
-echo "== [3/4] 翻译新鲜度（英文版不应落后中文权威版）=="
-for pair in "README.md README.en.md" \
-            "docs/README.md docs/README.en.md" \
-            "docs/research/harness-best-practices.zh.md docs/research/harness-best-practices.en.md" \
-            "docs/solution/vibe-coding-harness-plan.zh.md docs/solution/vibe-coding-harness-plan.en.md"; do
-  set -- $pair; z=$1; e=$2
-  [ -f "$z" ] && [ -f "$e" ] || continue
-  zd=$(git log -1 --format=%ct -- "$z" 2>/dev/null || echo 0)
-  ed=$(git log -1 --format=%ct -- "$e" 2>/dev/null || echo 0)
-  if [ "${zd:-0}" -gt "${ed:-0}" ]; then
-    echo "  [落后提醒] $e 落后于中文权威版（中文最后更新：$(date -d "@$zd" +%F 2>/dev/null || echo "$zd")）"
+echo "== [3/4] 翻译新鲜度（中文翻译不应落后英文权威版）=="
+for pair in "README.md README.zh.md" \
+            "docs/README.md docs/README.zh.md" \
+            "docs/research/harness-best-practices.md docs/research/harness-best-practices.zh.md" \
+            "docs/solution/vibe-coding-harness-plan.md docs/solution/vibe-coding-harness-plan.zh.md"; do
+  set -- $pair; a=$1; zh=$2
+  [ -f "$a" ] && [ -f "$zh" ] || continue
+  ad=$(git log -1 --format=%ct -- "$a" 2>/dev/null || echo 0)
+  zd=$(git log -1 --format=%ct -- "$zh" 2>/dev/null || echo 0)
+  if [ "${ad:-0}" -gt "${zd:-0}" ]; then
+    echo "  [落后提醒] $zh 落后于英文权威版（英文最后更新：$(date -d "@$ad" +%F 2>/dev/null || echo "$ad")）"
   fi
 done
 
 echo "== [4/4] 状态行（新文档必须有，存量逐步补）=="
-for f in README.md docs/README.md docs/research/harness-best-practices.zh.md docs/solution/vibe-coding-harness-plan.zh.md; do
+for f in README.md README.zh.md docs/README.md docs/README.zh.md \
+         docs/research/harness-best-practices.md docs/research/harness-best-practices.zh.md \
+         docs/solution/vibe-coding-harness-plan.md docs/solution/vibe-coding-harness-plan.zh.md; do
   [ -f "$f" ] && ! grep -q "status:" "$f" && echo "  [提醒] 缺 status 行: $f"
 done
 

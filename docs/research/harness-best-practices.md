@@ -1,12 +1,12 @@
 # Standard Vibe Coding Development Environment (Agent Harness): Research Summary
 
-> status: Active — English translation. **The Chinese version ([harness-best-practices.zh.md](./harness-best-practices.zh.md)) is authoritative.**
+> status: Active — authoritative English version. Chinese translation: [harness-best-practices.zh.md](./harness-best-practices.zh.md).
 >
 > **Goal**: distill recent industry practice on "agent harnesses for long-running tasks" (Anthropic, OpenAI, LangChain, Thoughtworks/Martin Fowler, Mitchell Hashimoto) into a **standard, universal method for setting up a development environment** that enables Vibe Coding (humans steer, agents row) for long-running tasks with guaranteed quality.
 >
 > Compiled: 2026-09-14. All conclusions come from the public sources listed at the end.
 >
-> For the zero-background implementation guide, see the companion **Implementation Guide**: [vibe-coding-harness-plan.en.md](../solution/vibe-coding-harness-plan.en.md) (this document is the design rationale and source digest).
+> For the zero-background implementation guide, see the companion **Implementation Guide**: [vibe-coding-harness-plan.md](../solution/vibe-coding-harness-plan.md) (this document is the design rationale and source digest).
 
 ---
 

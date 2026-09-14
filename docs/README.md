@@ -1,36 +1,36 @@
-# 文档地图
+# Docs Map
 
-> 语言 / Language：**中文（权威版）** ｜ [English](./README.en.md)
+> Language: **English (authoritative)** ｜ 中文翻译：[README.zh.md](./README.zh.md)
 >
-> status: 生效
+> status: Active (authoritative English version)
 
-本目录遵循两条原则：**每个知识只有一个家**（single source of truth），**地图 + 渐进式披露**（入口短而稳定，细节分层下沉）。本文件只做导航，不承载内容。
+This directory follows two principles: **single source of truth** (every piece of knowledge has exactly one home) and **map + progressive disclosure** (short stable entries, details layered below). This file is navigation only.
 
-## 目录结构
+## Layout
 
 ```
 docs/
-├── research/     # 调研篇：业界实践逐篇总结、八条共识、失败模式、全部出处
-├── solution/     # 实施篇：零基础思路整理 + 完整搭建方案 + 分阶段路线图
-├── templates/    # 可复制工程模板（AGENTS.md、任务看板、进度文件、主循环提示词…）
-├── adapters/     # 领域适配卡：接入新领域时填一张卡（build/run/verify/observe/sandbox 五问）
-├── decisions/    # 决策记录（ADR）：为什么这么设计
-└── plans/        # 落地计划、进度、终极方案目录（deferred-blueprints.md）：活文档
+├── research/     # Research: per-source digests, 8 consensus principles, failure modes, references
+├── solution/     # Implementation guide: zero-background intro + full plan + phased roadmap
+├── templates/    # Copyable templates (AGENTS.md, task board, progress file, main-loop prompt…)
+├── adapters/     # Domain adapter cards: one card per domain (build/run/verify/observe/sandbox)
+├── decisions/    # Decision records (ADR): why it was designed this way
+└── plans/        # Roadmap, progress, deferred blueprints (deferred-blueprints.md): living docs
 ```
 
-## 阅读路径
+## Reading Paths
 
-1. **新成员/首次接触**：[实施篇](solution/vibe-coding-harness-plan.zh.md) 第一、二部分建立认知 → 跳到第三部分自己所在的领域章节；
-2. **想知道"为什么这么设计"**：[调研篇](research/harness-best-practices.zh.md)（含全部参考文章链接与逐篇要点）；
-3. **动手搭建**：复制 [templates/](templates/README.md) 到目标仓库 → 按自己领域填写[适配卡](adapters/README.md) → 按[实施篇第四部分](solution/vibe-coding-harness-plan.zh.md)路线图推进。
+1. **New members / first contact**: [Implementation Guide](solution/vibe-coding-harness-plan.md) Parts 1–2 → jump to Part 3 for your domain;
+2. **Why it was designed this way**: [Research Summary](research/harness-best-practices.md) (all source links and digests);
+3. **Hands-on setup**: copy [templates/](templates/README.md) (zh) into the target repo → fill the [adapter card](adapters/README.md) (zh) for your domain → follow Part 4 of the guide.
 
-（英文读者：从 [English docs map](./README.en.md) 进入；两篇主文档均有 `.en.md` 版本，其余文档为中文。）
+(Chinese readers: start from [中文文档地图](./README.zh.md); the two main documents have `.zh.md` translations; internal living docs are Chinese-only by default.)
 
-## 维护规则
+## Maintenance Rules
 
-- **唯一权威来源**：模板只改 `templates/`，适配卡只改 `adapters/`；任何文档不得抄一份副本，需要时只放链接；
-- **讨论入库**：聊出结论当场落盘，"以后再说"的必须登记进 [plans/deferred-blueprints.md](plans/deferred-blueprints.md)——完整规则见根目录 [AGENTS.md](../AGENTS.md)；
-- **双语**：中文为权威版本；改动中文权威文档必须同步英文版，来不及先标注"落后"；由 `scripts/check-docs.sh` 机械检查；
-- **决策留痕**：影响方案走向的决定写入 `decisions/`（一条一文件，命名 `YYYYMMDD-短标题.md`）；
-- **进度与内容分离**：调研篇/实施篇保持稳定，实施进度一律进 `plans/`；
-- **链接自检**：移动或重命名文件后，必须更新本文件、根 README 及文内交叉链接（体检脚本会兜底）。
+- **Single source of truth**: templates only change in `templates/`, adapter cards only in `adapters/`; never copy content elsewhere, link instead;
+- **Capture discussions**: conclusions land in the repo immediately; "later" items must be registered in [plans/deferred-blueprints.md](plans/deferred-blueprints.md) — full rules in root [AGENTS.md](../AGENTS.md);
+- **Bilingual**: English (default filenames) is authoritative; every change to an authoritative doc must be mirrored in the `.zh.md` translation, or the translation marked "behind"; mechanically checked by `scripts/check-docs.sh`;
+- **Record decisions**: write them into `decisions/` (one file each, named `YYYYMMDD-title.md`, ASCII only);
+- **Separate progress from content**: research/solution docs stay stable; progress goes into `plans/`;
+- **Link hygiene**: after moving/renaming files, update this map, the root README and all cross-links (the check script backstops this).

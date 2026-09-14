@@ -1,5 +1,5 @@
 # Gitea 评审门禁部署包（终极方案 B1，未启用）
-# 启用条件与决策：docs/decisions/20260914-基础设施边界决策.md（D3）
+# 启用条件与决策：docs/decisions/20260914-infra-boundary-decisions.md（D3）
 # 启用步骤：同目录 README.md
 
 services:
