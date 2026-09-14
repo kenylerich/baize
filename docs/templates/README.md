@@ -9,6 +9,7 @@
 | [feature-list.json](./feature-list.json) | `tasks/` | 任务看板：特性清单，全部初始 `false`，验收标准=可执行命令 |
 | [progress.md](./progress.md) | `tasks/` | 进度文件：上次会话 / 卡点 / 下一步 / 已知坑 |
 | [main-loop-prompt.md](./main-loop-prompt.md) | 会话提示词 | 单特性主循环标准指令 |
+| [ci/](./ci/README.md) | 目标仓库 CI 配置 | 质量闸门适配层：GitHub / Gitea / GitLab 三平台模板（任务名必须为 `verify`） |
 
 ## 待补充（Phase 1 交付物）
 

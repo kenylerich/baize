@@ -22,6 +22,7 @@
 - **理由**：内网私有、零许可成本、资源占用小（数百 MB 内存）；原生支持分支保护 / PR / 必须 N 个 Approve / 状态检查，完整覆盖 L2 门禁设计。备选并否决：GitHub 原生门禁（可接受云端时更省事）、GitLab（过重）。
 - **部署包**：`infra/gitea/`
 - **触发条件**：B1——出现第二个提交主体。
+- **2026-09-15 补充**：质量闸门已升级为跨平台不变量契约（GitHub / GitLab / Gitea 一致），见 D10（`20260915-multi-platform-quality-gates.md`）与 `docs/solution/quality-gates.md`。Gitea 仍为自建默认，但不再是唯一选项。
 
 ## D4 Agent 沙箱与凭据代理推送按需启用
 

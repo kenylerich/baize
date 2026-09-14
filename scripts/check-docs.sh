@@ -25,6 +25,7 @@ AUTH=(
   "docs/README.md"
   "docs/research/harness-best-practices.md"
   "docs/solution/vibe-coding-harness-plan.md"
+  "docs/solution/quality-gates.md"
 )
 for a in "${AUTH[@]}"; do
   zh="${a%.md}.zh.md"
@@ -38,7 +39,8 @@ echo "== [3/5] 翻译新鲜度（中文翻译不应落后英文权威版）=="
 for pair in "README.md README.zh.md" \
             "docs/README.md docs/README.zh.md" \
             "docs/research/harness-best-practices.md docs/research/harness-best-practices.zh.md" \
-            "docs/solution/vibe-coding-harness-plan.md docs/solution/vibe-coding-harness-plan.zh.md"; do
+            "docs/solution/vibe-coding-harness-plan.md docs/solution/vibe-coding-harness-plan.zh.md" \
+            "docs/solution/quality-gates.md docs/solution/quality-gates.zh.md"; do
   set -- $pair; a=$1; zh=$2
   [ -f "$a" ] && [ -f "$zh" ] || continue
   ad=$(git log -1 --format=%ct -- "$a" 2>/dev/null || echo 0)

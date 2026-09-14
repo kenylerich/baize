@@ -1,0 +1,10 @@
+# GitLab 质量闸门适配层（复制到目标仓库根：.gitlab-ci.yml）
+# 任务名必须为 verify——受保护分支的 "Pipelines must succeed" 按流水线结果判定
+# 真正的判定逻辑在 scripts/verify.sh（平台无关）
+verify:
+  stage: test
+  image: ubuntu:24.04        # 按项目技术栈替换镜像（node:22 / golang:1.23 / python:3.12 …）
+  script:
+    - ./scripts/verify.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"

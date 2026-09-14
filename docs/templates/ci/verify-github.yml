@@ -1,0 +1,11 @@
+# GitHub 质量闸门适配层（复制到目标仓库：.github/workflows/verify.yml）
+# 任务名必须为 verify——分支保护的"必须通过的状态检查"按此名字引用
+# 真正的判定逻辑在 scripts/verify.sh（平台无关）
+name: verify
+on: [pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/verify.sh
