@@ -1,7 +1,11 @@
 # Gitea 质量闸门适配层（Gitea Actions 与 GitHub Actions 语法兼容，内容与 .github/workflows/docs-check.yml 相同）
 # 仓库存放到 Gitea 且配有 act_runner 时自动生效
 name: docs-check
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 3 * * 1'   # 治理巡检：每周一自动体检
 
 jobs:
   check:

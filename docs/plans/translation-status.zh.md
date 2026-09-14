@@ -3,7 +3,7 @@
 >
 > 规则出处：根目录 AGENTS.md「Bilingual Rules」与决策记录 D9。要点：英文（默认文件名）= 权威；`*.zh.md` = 中文翻译；文件名一律 ASCII；改动权威文档必须同步翻译或标注"落后"。
 
-## 一、双语成对（24 对——docs/ 下全部文档）
+## 一、双语成对（26 对——docs/ 下全部文档）
 
 | 目录 | 权威版本（英文） | 中文翻译（.zh.md） |
 |---|---|---|
@@ -14,7 +14,7 @@
 | docs/decisions/ | README.md；20260914-infra-boundary-decisions.md；20260915-doc-lifecycle-and-bilingual.md；20260915-multi-platform-quality-gates.md；20260915-version-fingerprints.md | 同名 .zh.md |
 | docs/plans/ | README.md；deferred-blueprints.md；agile-gap-analysis.md；roadmap.md；translation-status.md | 同名 .zh.md |
 | docs/plans/sprints/ | README.md；S2026-01.md | 同名 .zh.md |
-| docs/templates/ | README.md；AGENTS.md；progress.md；main-loop-prompt.md；ci/README.md | 同名 .zh.md |
+| docs/templates/ | README.md；AGENTS.md；progress.md；main-loop-prompt.md；architecture.md；quality.md；ci/README.md | 同名 .zh.md |
 | docs/adapters/ | README.md；adapter-card-template.md | 同名 .zh.md |
 
 ## 二、仅中文（2 份——docs/ 之外，按规则登记）

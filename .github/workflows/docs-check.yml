@@ -1,6 +1,10 @@
 name: docs-check
 # 文档门禁：链接有效性 / 双语配对 / 翻译新鲜度 / 状态行 / 指纹清单（scripts/check-docs.mjs）
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1"   # 治理巡检：每周一自动体检
 
 jobs:
   check:

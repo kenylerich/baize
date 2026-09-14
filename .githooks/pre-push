@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# 推送前门禁：文档体检 + 指纹校验，任一失败即阻止推送
+# 启用方式：git config core.hooksPath .githooks
+set -u
+cd "$(dirname "$0")/.." || exit 1
+echo "[pre-push] 文档体检..."
+node scripts/check-docs.mjs || exit 1
+echo "[pre-push] 指纹校验..."
+node scripts/doc-fingerprint.mjs verify || exit 1
+exit 0

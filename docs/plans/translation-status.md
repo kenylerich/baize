@@ -3,7 +3,7 @@
 >
 > Rules: root AGENTS.md "Bilingual Rules" and decision D9. Key points: English (default filename) = authoritative; `*.zh.md` = Chinese translation; filenames are ASCII-only; changes to an authoritative doc must be mirrored in the translation or marked "behind".
 
-## 1. Bilingual pairs (24 pairs — everything under docs/)
+## 1. Bilingual pairs (26 pairs — everything under docs/)
 
 | Directory | Authoritative (English) | Chinese translation (.zh.md) |
 |---|---|---|
@@ -14,7 +14,7 @@
 | docs/decisions/ | README.md; 20260914-infra-boundary-decisions.md; 20260915-doc-lifecycle-and-bilingual.md; 20260915-multi-platform-quality-gates.md; 20260915-version-fingerprints.md | same-name .zh.md |
 | docs/plans/ | README.md; deferred-blueprints.md; agile-gap-analysis.md; roadmap.md; translation-status.md | same-name .zh.md |
 | docs/plans/sprints/ | README.md; S2026-01.md | same-name .zh.md |
-| docs/templates/ | README.md; AGENTS.md; progress.md; main-loop-prompt.md; ci/README.md | same-name .zh.md |
+| docs/templates/ | README.md; AGENTS.md; progress.md; main-loop-prompt.md; architecture.md; quality.md; ci/README.md | same-name .zh.md |
 | docs/adapters/ | README.md; adapter-card-template.md | same-name .zh.md |
 
 ## 2. Chinese-only (2 files — outside docs/, registered per rules)

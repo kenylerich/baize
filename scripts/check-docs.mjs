@@ -31,6 +31,8 @@ export const AUTH_PAIRS = [
   'docs/templates/AGENTS.md',
   'docs/templates/progress.md',
   'docs/templates/main-loop-prompt.md',
+  'docs/templates/architecture.md',
+  'docs/templates/quality.md',
   'docs/templates/ci/README.md',
   'docs/adapters/README.md',
   'docs/adapters/adapter-card-template.md',
