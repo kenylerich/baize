@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 文档体检脚本（文档门禁）：链接有效性 / 双语配对 / 翻译新鲜度 / 状态行
+# 文档体检脚本（文档门禁）：链接有效性 / 双语配对 / 翻译新鲜度 / 状态行 / 指纹清单
 # 语言约定：默认文件名（*.md）= 英文权威版；*.zh.md = 中文翻译
 # 用法：bash scripts/check-docs.sh   （本地运行，或在 CI 中作为合并门禁）
 # 退出码：0=通过；1=有错误（提醒不阻塞）
@@ -7,7 +7,7 @@ set -uo pipefail
 cd "$(dirname "$0")/.." || exit 1
 errors=0
 
-echo "== [1/4] 链接有效性 =="
+echo "== [1/5] 链接有效性 =="
 for f in $(find . -name '*.md' -not -path './.git/*'); do
   dir=$(dirname "$f")
   for l in $(grep -oE '\]\([^)#]+\)' "$f" 2>/dev/null | sed -E 's/^\]\(|\)$//g'); do
@@ -19,7 +19,7 @@ for f in $(find . -name '*.md' -not -path './.git/*'); do
   done
 done
 
-echo "== [2/4] 双语配对（登记在案的权威文档必须有中文翻译 *.zh.md）=="
+echo "== [2/5] 双语配对（登记在案的权威文档必须有中文翻译 *.zh.md）=="
 AUTH=(
   "README.md"
   "docs/README.md"
@@ -34,7 +34,7 @@ for a in "${AUTH[@]}"; do
   fi
 done
 
-echo "== [3/4] 翻译新鲜度（中文翻译不应落后英文权威版）=="
+echo "== [3/5] 翻译新鲜度（中文翻译不应落后英文权威版）=="
 for pair in "README.md README.zh.md" \
             "docs/README.md docs/README.zh.md" \
             "docs/research/harness-best-practices.md docs/research/harness-best-practices.zh.md" \
@@ -48,12 +48,18 @@ for pair in "README.md README.zh.md" \
   fi
 done
 
-echo "== [4/4] 状态行（新文档必须有，存量逐步补）=="
-for f in README.md README.zh.md docs/README.md docs/README.zh.md \
-         docs/research/harness-best-practices.md docs/research/harness-best-practices.zh.md \
-         docs/solution/vibe-coding-harness-plan.md docs/solution/vibe-coding-harness-plan.zh.md; do
-  [ -f "$f" ] && ! grep -q "status:" "$f" && echo "  [提醒] 缺 status 行: $f"
+echo "== [4/5] 状态行（所有文档必须有 > status: 行）=="
+for f in $(find . -name '*.md' -not -path './.git/*'); do
+  if ! grep -q "status:" "$f"; then
+    echo "  [缺状态行] $f"
+    errors=$((errors+1))
+  fi
 done
+
+echo "== [5/5] 文档指纹（MANIFEST.sha256）=="
+if ! bash scripts/doc-fingerprint.sh verify; then
+  errors=$((errors+1))
+fi
 
 echo "== 结果 =="
 if [ "$errors" -gt 0 ]; then

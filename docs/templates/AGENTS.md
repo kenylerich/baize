@@ -1,4 +1,5 @@
 # Repository Map
+> status: Active（生效）
 - 架构与分层规则: docs/architecture.md（铁律：UI 不得直接访问 Repo）
 - 质量评分: docs/quality.md
 - 当前计划: docs/plans/active/…；已完成: docs/plans/done/

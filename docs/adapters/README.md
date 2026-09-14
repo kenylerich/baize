@@ -1,4 +1,5 @@
 # 领域适配卡
+> status: Active（生效）
 
 接入一个新领域 = 填一张适配卡：回答 **build / run / verify / observe / sandbox** 五个固定问题，并落成四个标准脚本。
 

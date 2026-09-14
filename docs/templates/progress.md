@@ -1,4 +1,5 @@
 # Progress
+> status: Active（生效）
 ## Last session (2026-09-14)
 - 完成 F001 登录（commit abc1234），e2e 通过
 ## Blocked

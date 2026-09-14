@@ -1,4 +1,5 @@
 # 单特性主循环标准提示词
+> status: Active（生效）
 
 > 用法：每个执行会话完成"开工仪式"（pwd → git log -20 → 读 progress.md → 读 feature-list.json → smoke.sh）后，粘贴以下指令。
 

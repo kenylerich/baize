@@ -2,7 +2,7 @@
 
 > 语言：中文（翻译版） ｜ **English（权威 / authoritative）**：[README.md](./README.md)
 >
-> status: 生效（中文翻译版；权威版本为英文 README.md）
+> status: Active（生效；中文翻译版；权威版本为英文 README.md）
 
 Vibe Coding 开发环境（Agent Harness）的调研与落地方案仓库。
 

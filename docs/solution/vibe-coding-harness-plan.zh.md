@@ -1,5 +1,5 @@
 # Vibe Coding 开发环境搭建 · 完整实施方案
-> status: 生效（中文翻译版；英文为权威版本）
+> status: Active（生效；中文翻译版；英文为权威版本）
 
 > **定位**：本文是"完整落地方案"（实施篇），面向**零基础读者**——先帮你把思路从零理顺，再给出一套可执行的搭建方案，覆盖**嵌入式开发与全部软件领域**。
 > **理论依据与文章出处**见调研篇《[harness-best-practices.zh.md](../research/harness-best-practices.zh.md)》。

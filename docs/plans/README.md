@@ -1,4 +1,5 @@
 # 落地计划与进度
+> status: Active（生效）
 
 路线图**总览**目前位于[实施篇第四部分](../solution/vibe-coding-harness-plan.zh.md)（保持稳定，不承载进度）。Phase 0 启动后，在本目录建立活文档：
 

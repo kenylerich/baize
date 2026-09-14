@@ -2,7 +2,7 @@
 
 > 语言：中文（翻译版） ｜ **English（权威 / authoritative）**：[README.md](./README.md)
 >
-> status: 生效（中文翻译版；权威版本为英文 README.md）
+> status: Active（生效；中文翻译版；权威版本为英文 README.md）
 
 本目录遵循两条原则：**每个知识只有一个家**（single source of truth），**地图 + 渐进式披露**（入口短而稳定，细节分层下沉）。本文件只做导航，不承载内容。
 
