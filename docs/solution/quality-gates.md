@@ -54,4 +54,6 @@ Gate consistency across GitHub / GitLab / Gitea **cannot** mean identical settin
 
 ## Which platform hosts the repo
 
-Wherever the repo lives. Defaults: cloud = GitHub; self-host = Gitea (D3); GitLab when an organizational standard requires it. The gate contract is identical everywhere — moving a repo between platforms changes only the adapter file, never `verify.sh`.
+Hosting priority: **Gitea (self-host, first choice) → GitHub → GitLab** (revised 2026-09-15, see D10). The gate contract is identical everywhere — moving a repo between platforms changes only the adapter file, never `verify.sh`.
+
+This repository ships all three CI wirings out of the box: `.gitea/workflows/docs-check.yml`, `.github/workflows/docs-check.yml`, and `.gitlab-ci.yml`. Whichever platform hosts or mirrors the repo runs the file that belongs to it, executing the identical checks (`node scripts/check-docs.mjs` + `npm test`).

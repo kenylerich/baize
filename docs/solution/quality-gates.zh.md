@@ -54,4 +54,6 @@
 
 ## 仓库托管在哪
 
-仓库在哪里，闸门就在哪里生效。默认：云端 = GitHub；自建 = Gitea（D3）；组织标准要求时 = GitLab。闸门契约在任何平台完全一致——仓库在平台之间迁移，只换适配层文件，`verify.sh` 永远不变。
+托管优先级：**Gitea（自建，首选）→ GitHub → GitLab**（2026-09-15 修订，见 D10）。闸门契约在任何平台完全一致——仓库在平台之间迁移，只换适配层文件，`verify.sh` 永远不变。
+
+本仓库已内置三平台 CI 配置：`.gitea/workflows/docs-check.yml`、`.github/workflows/docs-check.yml`、`.gitlab-ci.yml`。仓库被哪个平台托管或镜像，就自动运行属于它的那份文件，执行的检查完全相同（`node scripts/check-docs.mjs` + `npm test`）。

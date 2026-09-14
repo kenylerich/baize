@@ -1,0 +1,23 @@
+# GitLab CI 适配层：本仓库的文档门禁 + 脚本测试
+# 与 .github/workflows/docs-check.yml、.gitea/workflows/docs-check.yml 完全等价
+# 仓库存放到 GitLab 时自动生效（需要可用 runner）
+variables:
+  GIT_DEPTH: 0              # 翻译新鲜度检查需要完整提交历史
+
+docs-check:
+  stage: test
+  image: node:22
+  script:
+    - node scripts/check-docs.mjs
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+script-tests:
+  stage: test
+  image: node:22
+  script:
+    - npm test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"

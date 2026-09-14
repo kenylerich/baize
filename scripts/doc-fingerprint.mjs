@@ -40,7 +40,8 @@ export function listManagedFiles(root = process.cwd()) {
       else if (extraExt.has(path.extname(e.name))) found.add(toPosix(path.relative(root, p)));
     }
   };
-  for (const d of ['scripts', '.github', 'infra']) walkExtra(path.join(root, d));
+  for (const d of ['scripts', '.github', '.gitea', 'infra']) walkExtra(path.join(root, d));
+  if (fs.existsSync(path.join(root, '.gitlab-ci.yml'))) found.add('.gitlab-ci.yml');
   if (fs.existsSync(path.join(root, 'package.json'))) found.add('package.json');
   return [...found].sort();
 }
