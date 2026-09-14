@@ -7,7 +7,7 @@
 
 | # | 方案 | 触发信号（出现这个才做） | 去哪看 | 状态 |
 |---|---|---|---|---|
-| B1 | Docker Gitea 评审门禁（分支保护 + PR + CI + Approve）——**三平台中的优先项** | 出现第二个提交主体：来了第二个同事，或 Agent 提交量大到人肉把关不过来 | `infra/gitea/`（部署包 + 启用四步）；决策记录 D3/D10；跨平台闸门契约 `docs/solution/quality-gates.md`；本仓库已内置三平台 CI 配置（.gitea/.github/.gitlab-ci.yml） | 部署中（Gitea + act_runner 已于本机 localhost:3000 运行，管理员账号已配置；待迁移仓库并启用分支保护门禁） |
+| B1 | Docker Gitea 评审门禁（分支保护 + PR + CI + Approve）——**三平台中的优先项** | 出现第二个提交主体：来了第二个同事，或 Agent 提交量大到人肉把关不过来 | `infra/gitea/`（部署包 + 启用四步）；决策记录 D3/D10；跨平台闸门契约 `docs/solution/quality-gates.md`；本仓库已内置三平台 CI 配置（.gitea/.github/.gitlab-ci.yml） | 部署并合入：Gitea 运行于 localhost:3000，仓库 kenyle/baize 已建立并同步（main + 归档标签）；待启用分支保护门禁与 push mirror（需 GitHub 细粒度 PAT） |
 | B2 | Gitea push mirror 同步 GitHub（异地备份镜像） | B1 启用后，Gitea 成为权威仓库时 | `infra/gitea/README.md` 第 5 节 | 未启用 |
 | B3 | Agent 沙箱 + 凭据代理推送 | Agent 跑进隔离容器，或需要并行多个互不干扰的 Agent | 决策记录 D4；实施篇 2.2⑤ 安全层 | 未启用 |
 | B4 | 容灾单独建设（Gitea 数据卷备份） | B1 启用后（审批记录、issue 等 git 之外的数据出现） | `infra/gitea/README.md` 第 6 节；决策记录 D5 | 未启用 |
