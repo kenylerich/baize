@@ -25,3 +25,19 @@
 
 ## Phase 2+ · Domain adapters / platformization / scale
 - See Implementation Guide Phases 2–4 and the [deferred blueprints register](./deferred-blueprints.md) (B5–B7)
+
+## Gap ledger — environment vs. target architecture (assessed 2026-09-15)
+
+Baseline: the full harness environment defined in the Implementation Guide (six layers) plus the original mission (complete one real long task).
+
+| Layer | Target | Current status | Done | Gap nature |
+|---|---|---|---|---|
+| ① Knowledge base | repo map + docs system of record + bilingual/lifecycle/fingerprints | baize itself largely compliant; project-level skeleton (architecture.md / quality.md templates) missing | ~85% | template gap (small) |
+| ② Tasks & progress | feature-list / progress / Issues / sprints / DoD | templates ✓, issue templates ✓, sprint S2026-01 running ✓, DoD ✓; never exercised on real requirements | ~70% | usage gap |
+| ③ Verification | five scripts + CI + hooks + linters + Evaluator | this repo's CI ✓ running on Gitea + GitHub; five scripts ✗, hooks ✗, linters ✗, Evaluator ✗ (B6) | ~40% | build gap (medium) |
+| ④ Environment | worktree/sandbox + Gitea-first + image matrix + observability | worktree ✓, Gitea + runner deployed ✓, repo migrated ✓; image matrix ✗, observability ✗ | ~50% | on-trigger items |
+| ⑤ Security | branch protection / credentials / token rules | GitHub lock ✓; **Gitea lock not configured**; token rules written ✓; vault ✗ (B3) | ~60% | mixed |
+| ⑥ Domain adapters | one card per domain | 0 cards (B7) | 0% | business-triggered |
+| ⑦ Long-task practice (original mission) | complete one real long task with this environment | never happened | **0%** | **largest gap** |
+
+**Conclusion**: governance ≈85% ready; the executable engineering layer ≈40–50%; end-to-end practice 0%. The gap equals one Phase 1 (five scripts + project template instantiation) plus one pilot sprint — roughly 2–4 weeks — with **no directional misses and no rework risk**. Everything implemented maps to a recorded decision (D1–D11); everything deferred is registered with triggers. The only process defect — "no complete plan to measure against" — is closed by the gap-analysis / roadmap / registers trio. Next: pick the T1 pilot and run the first real long task (closes ⑦).
