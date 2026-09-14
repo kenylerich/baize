@@ -43,6 +43,10 @@
 5. **翻译覆盖登记**：每新增或更名文档，必须同步更新 `docs/plans/translation-status.zh.md` 的一行登记（成对 / 仅中文）；该表是双语覆盖的唯一权威视图。
 6. `scripts/check-docs.mjs` 会检查配对完整性与翻译新鲜度。
 
+## Pre-push gate（推送门禁，已启用）
+
+- 本仓库启用 `core.hooksPath=.githooks`：每次推送自动执行 check-docs 体检 + 指纹校验，失败即阻止推送。克隆本仓库后需执行一次：`git config core.hooksPath .githooks`。
+
 ## Definition of Done（完成定义——本仓库）
 
 一条工作算"完成"，必须同时满足：

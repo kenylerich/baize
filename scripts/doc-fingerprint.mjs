@@ -43,6 +43,8 @@ export function listManagedFiles(root = process.cwd()) {
   for (const d of ['scripts', '.github', '.gitea', 'infra']) walkExtra(path.join(root, d));
   if (fs.existsSync(path.join(root, '.gitlab-ci.yml'))) found.add('.gitlab-ci.yml');
   if (fs.existsSync(path.join(root, 'package.json'))) found.add('package.json');
+  const hook = '.githooks/pre-push';
+  if (fs.existsSync(path.join(root, hook))) found.add(hook);
   return [...found].sort();
 }
 
